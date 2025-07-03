@@ -1,0 +1,77 @@
+Find the length of the smallest window in the string that contains all unique characters.
+
+
+Input: str = "aabcbcdbca"
+Output: 4
+Explanation: Sub-String "dbca" has the smallest length that contains all the characters of str.
+Input: str = "aaab"
+Output: 2
+Explanation: Sub-String "ab" has the smallest length that contains all the characters of str.
+Input: str = "geeksforgeeks"
+Output: 7
+Explanation: There are multiple substring with smallest length that contains all characters of str, "eksforg" and "ksforge". 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Code:------------------
+
+
+public class uniqueelemnentstring {
+    public static int unquieString(String s) {
+        int unique = 0;
+        StringBuffer sb2 = new StringBuffer();
+
+        boolean[] uniquene_arr = new boolean[256];
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (!uniquene_arr[c]) {
+                uniquene_arr[c] = true;
+                sb2.append(c);
+                unique++;
+            }
+        }
+        System.out.println("UNIQUE " + unique);
+        return unique;
+    }
+
+    public static int smallestwindow(String s) {
+
+        int[] frquency = new int[256];
+        int first = 0;
+        int second = 0;
+        int length = Integer.MAX_VALUE;
+        int uniqueelement = unquieString(s);
+        int totalUnique = uniqueelement;
+
+        while (second < s.length()) {
+            char ch = s.charAt(second);
+
+            frquency[ch]++;
+            if (frquency[ch] == 1) {
+                uniqueelement--;
+            }
+
+            while (uniqueelement == 0) {
+                length = Math.min(length, second - first + 1);
+                char firstChar = s.charAt(first);
+                frquency[firstChar]--;
+                if (frquency[firstChar] == 0) {
+                    uniqueelement++;
+                }
+                first++;
+            }
+
+            second++;
+        }
+
+        return (length == Integer.MAX_VALUE) ? 0 : length;
+
+    }
+
+    public static void main(String args[]) {
+        String s = "AABBBCBBAC";
+        int smallwindow = smallestwindow(s);
+        System.out.println(smallwindow);
+    }
+}
