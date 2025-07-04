@@ -30,3 +30,33 @@ public class longesrprefex {
       = O(n²)
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  youtube viedo :-   https://youtu.be/sODA1BzFvsE?si=5Pf7ZZa5qd21Ke29
+//optimize approch  KMP algorithum 
+class Solution {
+    int longestPrefixSuffix(String s) {
+          int n = s.length();
+        int [] arr= new int[n];
+        int prefix=0;
+        int suffix=1;
+        while(suffix< n){
+            if(s.charAt(prefix)==s.charAt(suffix)){
+                arr[suffix]=prefix+1;
+                suffix++;
+                prefix++;
+            }
+            else{
+                if(prefix == 0){
+                    arr[suffix]=0;
+                    suffix++;
+                }
+                else{
+                    prefix= arr[prefix-1];
+                }
+            }
+        }
+        
+        return arr[n-1];
+        
+    }
+}
