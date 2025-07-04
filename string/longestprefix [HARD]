@@ -1,0 +1,30 @@
+// BRUTE FORCE APPROCH 
+
+public class longesrprefex {
+    public static int longesrprefex(String str) {
+        int maxLength = 0;
+        int n = str.length();
+        
+        // Try all possible prefix lengths (except the full string)
+        for (int i = 1; i < n; i++) {
+            String prefix = str.substring(0, i);
+            String suffix = str.substring(n - i, n);
+            
+            if (prefix.equals(suffix)) {
+                maxLength = Math.max(maxLength, i);
+            }
+        }
+        
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        String str = "ABCDEABCD";
+        int value = longesrprefex(str);
+        System.out.println(value);                                                                   // Output: 4
+    }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
