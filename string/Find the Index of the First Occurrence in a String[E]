@@ -1,0 +1,48 @@
+//                           BRUTE FORCE APPROCH 
+
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+         StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+            for (int j = i+1; j <= haystack.length(); j++) {
+                sb.setLength(0);
+                for (int k = i; k < j; k++) {
+                    sb.append(haystack.charAt(k));
+                }
+                if (sb.toString().equals(needle)) {
+                    return i;
+                }
+
+            }
+        }
+        return -1;
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//                  LITTLE OPTIMZIE CODE
+
+
+ public static int presence_optimize_better(String s, String check) {
+        int first = 0;
+        int second = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == check.charAt(second)) {
+                second++;
+                if (second == check.length()) {
+                    return first; // Full match found
+                }
+            } else {
+
+                first++;
+                i = first-1;
+                second = 0;
+            }
+
+        }
+
+        return -1;
+    }
