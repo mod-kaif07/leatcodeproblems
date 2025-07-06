@@ -1,3 +1,65 @@
+//MOST OPTIMIZE CODE (USING KMP ALGORITHUM);
+
+class Solution {
+    public  void longestPrefixSuffix(int arr[], String s) {
+        int n = s.length();
+
+        int prefix = 0;
+        int suffix = 1;
+        while (suffix < n) {
+            if (s.charAt(prefix) == s.charAt(suffix)) {
+                arr[suffix] = prefix + 1;
+                suffix++;
+                prefix++;
+            } else {
+                if (prefix == 0) {
+                    arr[suffix] = 0;
+                    suffix++;
+                } else {
+                    prefix = arr[prefix - 1];
+                }
+            }
+        }
+
+    }
+
+    public int strStr(String haystack, String needle) {
+        int[] arr = new int[needle.length()];
+        longestPrefixSuffix(arr, needle);
+        int first = 0;
+        int second = 0;
+        while (second < needle.length() && first < haystack.length()) {
+            //match
+
+            if (haystack.charAt(first) == needle.charAt(second)) {
+                first++;
+                second++;
+            }
+            //notmatch
+            else {
+                if (second == 0) {
+                    first++;
+                } else {
+                    second = arr[second - 1];
+                }
+            }
+        }
+        if(second ==needle.length() ){
+            return first-second;
+        }
+        return -1;
+    }
+}
+
+
+
+| Metric    | Complexity |
+| --------- | ---------- |
+| **Time**  | `O(m + n)` |
+| **Space** | `O(n)`     |
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                           BRUTE FORCE APPROCH 
 
 
