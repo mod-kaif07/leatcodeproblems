@@ -1,0 +1,35 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+public class searchingelement {
+    public static int serach(int arr[], int check){
+        int start=0;
+        int last=arr.length-1;
+        while (start<=last) {
+            int mid = (last+start)/2;
+            if(check==arr[mid]){
+                return mid;
+
+            }
+             if(check > arr[mid]){
+                start=mid+1;
+            }
+            else{
+                last=mid-1;
+            }
+
+           
+        }
+                                                               //No start++ and last --- beacuse all this iteration done in  if and else condition 
+        return -1;
+    }
+    public static void main(String[] args) {        
+      int[] arr = {34, 12, 7, 89, 56, 21, 3};
+        Arrays.sort(arr);
+      int check= 56;
+      System.out.println(Arrays.toString(arr));
+      System.out.println("Element search for "+check);
+      int index=serach(arr,check);
+      System.out.println("Element present at Index :"+index);
+    }
+}
