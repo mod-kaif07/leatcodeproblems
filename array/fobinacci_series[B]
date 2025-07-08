@@ -1,0 +1,53 @@
+    //USING ARRAY LIST 
+
+
+import java.util.ArrayList;
+
+public class fobinacciseries {
+    public static ArrayList fobanciseriesprint(int n) {
+        ArrayList<Integer> newArr = new ArrayList<>();
+        if (n <= 0)
+            return newArr;
+        newArr.add(0);
+        if (n == 1) return newArr;
+        newArr.add(1);
+        for(int i=2;i<n;i++){
+            int next= newArr.get(i-1)+newArr.get(i-2);
+            newArr.add(next);
+        }
+
+        return newArr;
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        ArrayList answerarr = fobanciseriesprint(n);
+        System.out.println(answerarr);
+    }
+}
+
+TIME COMPLEXIBITY | Operation                              | Time                   |
+| -------------------------------------- | ---------------------- |
+| `newArr.add(0)`                        | O(1)                   |
+| `newArr.add(1)`                        | O(1)                   |
+| Loop from `i = 2` to `n-1`             | O(n - 2) ≈ O(n)        |
+| Each `.get()` and `.add()` inside loop | O(1) each → O(n) total |
+
+
+So the total time complexity is:
+
+✅ O(n)
+
+Because:
+
+We do n constant-time operations.
+
+No nested loops or recursion involved.
+
+🧠 Space Complexity:
+You're storing n elements in the ArrayList, so:
+
+✅ Space Complexity: O(n)
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
