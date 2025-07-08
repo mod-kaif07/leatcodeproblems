@@ -1,5 +1,23 @@
 // Rotate Array by One GEEKSFORGEEKS
 
+//OPTIMIZE APPROACH 
+
+
+class Solution {
+    public void rotate(int[] arr) {
+          int n = arr.length;
+    int temp = arr[n - 1];
+   for(int i= n-1;i>0;i--){
+       arr[i]=arr[i-1];
+   }
+   arr[0]=temp;
+       
+    }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Solution {
     public void rotate(int[] arr) {
     int []newarr= new int[arr.length];
