@@ -1,0 +1,29 @@
+//THIS WILL NOT WORK FOR VERY LONG ARRAY GIVE TIME LIMIT EXCEED FOR LONG ARRAY BESTCHOICE TO GO WITH MERGE SORT AND QUICK SORT 
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+public class SelectionSort {
+    public static int[] sort(int arr[]) {
+        int n= arr.length;
+        for(int i=0;i<n-1;i++){
+               int idex=i;
+            for(int j=i+1;j<n;j++){
+                if(arr[idex]>arr[j]){
+                   idex=j;
+                }
+                }
+             int temp = arr[i];
+            arr[i] = arr[idex];
+            arr[idex] = temp;
+
+        }
+        return arr;
+    }
+public static void main(String[] args) {
+        int arr[] = { 9, 7, 3, 1, 6 };
+        int sortarr[] = sort(arr);
+        System.out.println(Arrays.toString(sortarr));
+    }
+}
+                      //////////////////// Time Complexity: O(n²)
