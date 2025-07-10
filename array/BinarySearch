@@ -36,3 +36,11 @@ public class searchingelement {
       System.out.println("Element present at Index :"+index);
     }
 }
+
+
+| Property         | Value         |
+| ---------------- | ------------- |
+| Time Complexity  | O(log N)      |
+| Space Complexity | O(1)          |
+| Type             | Iterative     |
+| Applicable On    | Sorted Arrays |
