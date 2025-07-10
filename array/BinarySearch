@@ -6,7 +6,10 @@ public class searchingelement {
         int start=0;
         int last=arr.length-1;
         while (start<=last) {
-            int mid = (last+start)/2;
+            int mid = (last+start)/2;         //  int mid= start +(end-start)/2;
+                                              // help to get error from if end has 2^31 greater value and then 
+                                            //we add it it will go out of box of int so that 
+                                             //we use this from both way we get same vale 
             if(check==arr[mid]){
                 return mid;
 
