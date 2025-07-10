@@ -1,0 +1,34 @@
+
+import java.util.Arrays;
+
+public class InsertionSort {
+    public static int[] insertionsorting(int arr[]){
+        int n=arr.length;
+        for(int i=1;i< n;i++){
+          for(int j=i;j>0;j--){
+            if(arr[j]<arr[j-1]){
+                  int temp = arr[j-1];
+                    arr[j-1] = arr[j];
+                    arr[j] = temp;
+            }else{
+                break;
+            }
+          }
+        }
+
+
+        return arr;
+    }
+    public static void main(String[] args) {
+       int arr[]={7,4,2,3,5};
+       int newarr[]=insertionsorting(arr);
+       System.out.println(Arrays.toString(newarr));
+    }
+}
+
+
+| Case             | Time Complexity | Explanation                             |
+| ---------------- | --------------- | --------------------------------------- |
+| **Best Case**    | `O(n)`          | Already sorted, inner loop breaks early |
+| **Average Case** | `O(n²)`         | Elements need to be shifted             |
+| **Worst Case**   | `O(n²)`         | Reverse sorted                          |
