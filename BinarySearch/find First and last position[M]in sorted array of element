@@ -1,0 +1,94 @@
+import java.util.Arrays;
+
+public class GetFirstAndLastOccurrence {
+
+    /**
+     * Brute force method to find the first and last occurrence of a target element in an array.
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     * 
+     * @param arr Input array (assumed sorted or unsorted)
+     * @param target The number to find in the array
+     * @return An array of size 2 -> [firstIndex, lastIndex]
+     */
+    public static int[] occurrence(int arr[], int target) {
+        int index = 0;
+        int[] answer = new int[]{-1, -1}; // Default: not found
+
+        // Traverse entire array to find all occurrences
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                answer[index] = i; // store the index
+                index++;
+                if (index > 1) break; // We only need first and last once
+            }
+        }
+
+        return answer;
+    }
+
+    /**
+     * Optimized method using Binary Search to find first and last occurrence of a target element.
+     * This works only for **sorted arrays**.
+     * Time Complexity: O(log n)
+     * Space Complexity: O(1)
+     *
+     * @param arr Input sorted array
+     * @param target The number to search for
+     * @return An array of size 2 -> [firstIndex, lastIndex]
+     */
+    public static int[] occurrenceOptimize(int arr[], int target) {
+        if (arr.length == 0) {
+            return new int[]{-1, -1};
+        }
+
+        int first = -1;
+        int start = 0, end = arr.length - 1;
+
+        // Binary search for first occurrence
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if (arr[mid] == target) {
+                first = mid;      // record index
+                end = mid - 1;    // search on the left side
+            } else if (arr[mid] > target) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+
+        int last = -1;
+        start = 0;
+        end = arr.length - 1;
+
+        // Binary search for last occurrence
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if (arr[mid] == target) {
+                last = mid;        // record index
+                start = mid + 1;   // search on the right side
+            } else if (arr[mid] > target) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+
+        return new int[]{first, last};
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 5, 7, 7, 8, 8, 10 };
+        
+        // Brute force method
+        int[] result1 = occurrence(arr, 8);
+        System.out.println("Brute Force Result: " + Arrays.toString(result1));
+
+        // Optimized binary search method
+        int[] result2 = occurrenceOptimize(arr, 8);
+        System.out.println("Binary Search Result: " + Arrays.toString(result2));
+    }
+}
