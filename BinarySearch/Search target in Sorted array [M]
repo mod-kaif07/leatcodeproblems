@@ -1,28 +1,36 @@
 class Solution {
     public int search(int[] arr, int target) {
         int start = 0;
-        int ans = -1;
         int end = arr.length - 1;
+
         while (start <= end) {
             int mid = start + (end - start) / 2;
-            if (arr[mid] == target) {
-                return mid;
-            } else if (arr[mid] >= arr[0]) {  ///// to check the sorted range 
+
+            // 🎯 Found the target
+            if (arr[mid] == target) return mid;
+
+            // 🔍 Check if left half is sorted
+            if (arr[mid] >= arr[0]) {
+                // ✅ Target is in the sorted left half
                 if (arr[start] <= target && arr[mid] >= target) {
                     end = mid - 1;
                 } else {
+                    // ❌ Target is in the unsorted right half
                     start = mid + 1;
                 }
-            } else {
+            }
+            // 🔍 Right half is sorted
+            else {
+                // ✅ Target is in the sorted right half
                 if (arr[mid] <= target && arr[end] >= target) {
                     start = mid + 1;
                 } else {
+                    // ❌ Target is in the unsorted left half
                     end = mid - 1;
                 }
-
             }
-
         }
-        return ans;
+
+        return -1; // ❌ Target not found
     }
 }
