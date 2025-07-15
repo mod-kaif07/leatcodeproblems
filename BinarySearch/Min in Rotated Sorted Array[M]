@@ -1,0 +1,49 @@
+class Solution {
+    public int findMin(int[] arr) {
+        int ans =arr[0];
+        int start=0;
+        int end = arr.length-1;
+        while(start<=end){
+            int mid = start+(end-start)/2;
+            if(arr[mid]>=arr[0]){
+                start=mid+1;
+            }
+            else{
+                ans=arr[mid];
+                end=mid-1;
+
+            }
+        }
+        return ans;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Key Idea (Binary Search):
+The array is sorted but rotated.
+
+If arr[mid] >= arr[0], the minimum is in the right half.
+
+Else, the minimum lies in the left half, including mid.
+
+
+
+Algorithm Steps:
+Initialize:
+
+start = 0, end = arr.length - 1
+
+ans = arr[0] (initial minimum)
+
+Run a binary search:
+
+Calculate mid = start + (end - start) / 2
+
+If arr[mid] >= arr[0]
+➜ Search in right half: start = mid + 1
+
+Else
+➜ Update ans = arr[mid], search in left half: end = mid - 1
+
+Return ans as the minimum.
