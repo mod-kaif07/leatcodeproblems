@@ -1,0 +1,20 @@
+BRUTE FORCE APPROCACH:-----------------[E]
+
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int nums = 1;
+        int i = 0;
+        while (k > 0) {
+            if (i < arr.length && arr[i] == nums) {
+                i++;
+            } else {
+                k--;
+                if(k==0){
+                    return nums;
+                }
+            }
+            nums++;
+        }
+        return -1;
+    }
+}
