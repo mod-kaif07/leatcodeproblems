@@ -1,0 +1,31 @@
+
+import java.util.*;
+
+public class Segregate0sand1s {
+    public static int [] segragrate(int arr[]){
+      int index=0;
+      int check=0;
+      while (index<arr.length) {
+        if(arr[index]==0){   // all change comes when 0 appers 
+            int temp=arr[index];
+            arr[index]=arr[check];
+            arr[check]=temp;
+            check++;
+        }
+        index++;
+      }
+    
+        return arr;
+    }
+     public static void main(String[] args) {
+        int arr[]={1,0,1,0,1,0};
+        int answerarr[]=segragrate(arr);
+        System.out.println(Arrays.toString(answerarr));
+     }
+}
+
+
+| Complexity | Value |
+| ---------- | ----- |
+| **Time**   | O(n)  |
+| **Space**  | O(1)  |
