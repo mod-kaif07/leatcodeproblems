@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class pairwithgivenDiffrence {
+    public static int[] difference(int arr[], int t) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            int diff = arr[end] - arr[start];
+            if (diff == t) {
+                return new int[] { start, end };
+
+            } else if (diff > t) {
+                end--;
+            } else {
+                start++;
+                // end = arr.length - 1;
+            }
+
+        }
+        return new int[] { -1, -1 };
+    }
+
+    public static int[] withsortarray(int arr[], int t) {
+        int sta = 0;
+        int end = 1;
+        while (sta < arr.length || end < arr.length) {
+            if (arr[end] - arr[sta] == t) {
+                return new int[] { sta, end };
+            } else if (arr[end] - arr[sta] < t) {
+                end++;
+            } else {
+                sta++;
+            }
+        }
+
+        return new int[] { -1, -1 };
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 5, 10, 3, 50, 80 };
+        // Arrays.sort(arr); // Sort the array first
+        int answerarr[] = difference(arr, 45);
+        System.out.println(Arrays.toString(answerarr));
+        int answerarr2[] = withsortarray(arr, 45);
+        System.out.println(Arrays.toString(answerarr2));
+
+    }
+}
