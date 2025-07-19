@@ -1,0 +1,41 @@
+
+import java.util.*;
+
+public class prefixSUm {
+    public static int[] prefixsum(int arr[]) {
+        int sumarr[] = new int[arr.length];
+        sumarr[0] = arr[0];
+        int idex = 1;
+        for (int i = 1; i < arr.length; i++) {
+            sumarr[idex] = sumarr[idex - 1] + arr[i];
+            idex++;
+        }
+
+        System.out.println("MAX  PREFIX SUM :--- " + sumarr[sumarr.length - 1]);
+
+        return sumarr;
+    }
+
+    public static int[] suffixsum(int arr[]) {
+        int sumarr[] = new int[arr.length];
+        sumarr[arr.length - 1] = arr[arr.length - 1];
+        int idex = sumarr.length - 2;
+        for (int i = arr.length - 2; i >= 0; i--) {
+            sumarr[idex] = sumarr[idex + 1] + arr[i];
+            idex--;
+        }
+
+        System.out.println("MAX  SUFFIX SUM :---" + sumarr[0]);
+
+        return sumarr;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 5, -5, 10, -10, 15 };
+        int arrySUM[] = prefixsum(arr);
+        System.out.println(Arrays.toString(arrySUM));
+        System.out.println();
+        int arrySUM2[] = suffixsum(arr);
+        System.out.println(Arrays.toString(arrySUM2));
+    }
+}
