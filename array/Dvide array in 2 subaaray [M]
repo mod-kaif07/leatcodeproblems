@@ -1,0 +1,61 @@
+Problem statement :----*/Given an array of integers arr[] of size n, 
+determine whether it is possible to divide the array into two non-empty 
+subarrays such that the sum of elements in both subarrays is equal.*/
+
+public class DivideArrayIn2SUbarray_is_equal {
+    public static boolean subarrayeqal(int arr[]) {
+
+        for (int i = 0; i < arr.length - 1; i++) {
+
+            int sumleft = 0;
+            int sumright = 0;
+            for (int j = 0; j <= i; j++) {
+                sumleft += arr[j];
+            }
+            for (int j = i + 1; j < arr.length; j++) {
+                sumright += arr[j];
+            }
+
+            if (sumleft == sumright) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean optimzesubarrayerqal(int arr[]) {
+        int total_sum = 0;
+        int ans = 0;
+        for (int i = 0; i < arr.length; i++) {
+            total_sum += arr[i];
+        }
+        int prefixsum = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            prefixsum += arr[i];
+            ans = total_sum - prefixsum;
+
+            if (prefixsum == ans) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 3, 4, -2, 5, 8, 20, -10, 8 };
+        boolean answer1 = subarrayeqal(arr);
+        System.err.println("Brute force coden output :"+answer1);
+        System.out.println();
+
+        boolean answer2 = optimzesubarrayerqal(arr);
+        System.err.println("optimze code  output :"+answer2);
+    }
+}
+
+
+| Method             | Time Complexity | Space Complexity | Notes                           |
+| ------------------ | --------------- | ---------------- | ------------------------------- |
+| Brute-force        | O(n²)           | O(1)             | Two inner loops per split point |
+| Optimized (prefix) | O(n)            | O(1)             | Fastest and cleanest solution   |
