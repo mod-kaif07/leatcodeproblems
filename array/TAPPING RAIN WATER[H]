@@ -1,0 +1,81 @@
+import java.util.Arrays;
+
+// Class to calculate maximum water trapped between bars after rain
+public class Tapping_Rain_water {
+
+    /**
+     * Function to calculate total trapped rainwater
+     * 
+     * @param arr The input array representing elevation map (bar heights)
+     * @return Total amount of water that can be trapped
+     */
+    public static int checkformaxstorgae(int arr[]) {
+        int n = arr.length;
+
+        // Arrays to store maximum height to the left and right of each element
+        int leftmax[] = new int[n];
+        int rightmax[] = new int[n];
+
+        // Step 1: Calculate left max for each element
+        // leftmax[i] will store the highest bar to the left of index i (excluding i itself)
+        leftmax[0] = 0; // No bar to the left of first element
+        for (int i = 1; i < n; i++) {
+            leftmax[i] = Math.max(leftmax[i - 1], arr[i - 1]);
+        }
+
+        // Step 2: Calculate right max for each element
+        // rightmax[i] will store the highest bar to the right of index i (excluding i itself)
+        rightmax[n - 1] = 0; // No bar to the right of last element
+        for (int i = n - 2; i >= 0; i--) {
+            rightmax[i] = Math.max(rightmax[i + 1], arr[i + 1]);
+        }
+
+        // Step 3: Calculate water stored at each position
+        int containerarry[] = new int[n]; // Stores water trapped at each index
+        for (int i = 0; i < arr.length; i++) {
+            // Water level is limited by the shorter of the tallest bars on both sides
+            int minlevel = Math.min(leftmax[i], rightmax[i]);
+
+            // Water that can be trapped = minlevel - height at current index
+            int value_should_go_into_final_array = minlevel - arr[i];
+
+            // If value is negative, it means no water can be stored at this index
+            if (value_should_go_into_final_array < 0) {
+                containerarry[i] = 0;
+            } else {
+                containerarry[i] = value_should_go_into_final_array;
+            }
+        }
+
+        // Optional: Print trapped water at each index for understanding
+        System.out.println("Water trapped at each index: " + Arrays.toString(containerarry));
+
+        // Step 4: Sum up all trapped water units
+        int maxConataion = 0;
+        for (int i = 0; i < containerarry.length; i++) {
+            maxConataion += containerarry[i];
+        }
+
+        return maxConataion;
+    }
+
+    // Driver method to test the function
+    public static void main(String[] args) {
+        int height[] = { 4, 2, 0, 5, 2, 6, 2, 3 };
+        int maxWater = checkformaxstorgae(height);
+        System.out.println("Total water trapped: " + maxWater);
+    }
+}
+
+
+
+
+
+
+/*
+ * Time Complexity: O(n)
+ * - We loop through the array 4 times (left max, right max, water calc, total sum), each in O(n).
+ *
+ * Space Complexity: O(n)
+ * - Extra arrays used: leftmax[], rightmax[], containerarry[] all of size n.
+ */
