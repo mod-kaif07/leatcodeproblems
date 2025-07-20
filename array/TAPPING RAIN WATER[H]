@@ -59,11 +59,50 @@ public class Tapping_Rain_water {
         return maxConataion;
     }
 
-    // Driver method to test the function
+////////////////////////////////////////////////// with constant space for this watch lecture 30 coder armey/////////
+
+   public static int checkStroge_With_less_space(int[] arr) {
+        int n = arr.length;
+        int maxvalue = 0;
+        int index = 0;
+        int waterCounter = 0;
+        for (int i = 0; i < n; i++) {
+            if (maxvalue < arr[i]) {
+                maxvalue = arr[i];
+                index = i;
+
+            }
+        }
+        int leftmax = 0;
+        int rightmax = 0;
+        for (int i = 0; i < index; i++) {
+
+            if (leftmax > arr[i]) {
+                waterCounter += leftmax - arr[i];
+            } else {
+                leftmax = arr[i];
+            }
+
+        }
+
+        for (int i = n - 1; i > index; i--) {
+
+            if (rightmax > arr[i]) {
+                waterCounter += rightmax - arr[i];
+            } else {
+                rightmax = arr[i];
+            }
+        }
+        return waterCounter;
+    }
+
     public static void main(String[] args) {
         int height[] = { 4, 2, 0, 5, 2, 6, 2, 3 };
         int maxWater = checkformaxstorgae(height);
-        System.out.println("Total water trapped: " + maxWater);
+        System.out.println((maxWater));
+
+        int maxWater2 = checkStroge_With_less_space(height);
+        System.out.println((maxWater2));
     }
 }
 
