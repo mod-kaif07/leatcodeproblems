@@ -1,0 +1,51 @@
+public class Max_Diffrene_bw_element {
+
+    public static int bruteforceaaproach(int arr[]) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                max = Math.max(max, arr[j] - arr[i]);
+            }
+        }
+        return max;
+    }
+
+    public static int optimizeapproach(int arr[]) { ////( using Kadane’s Algorithm)
+        int diff = arr[1] - arr[0];
+        int currsum = diff;
+        int maxdiffrence = Integer.MIN_VALUE;
+
+        for (int i = 1; i < arr.length-1; i++) {
+            diff = arr[i + 1] - arr[i];
+            if (currsum > 0) {
+                currsum += diff;
+            } else {
+                currsum = diff;
+            }
+            if (currsum > maxdiffrence) {
+                maxdiffrence = currsum;
+            }
+        }
+
+        return maxdiffrence;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 2, 3, 10, 6, 4, 8, 1 };
+        int Diff1 = bruteforceaaproach(arr);
+        System.out.println("BRUTE FORCE:-" + Diff1);
+
+        int Diff2 = optimizeapproach(arr);
+        System.out.println("OPTIMIZE APPROACH:-" + Diff2);
+
+
+        
+
+    }
+}
+
+
+| Approach           | Time Complexity | Space Complexity | Notes                                     |
+| ------------------ | --------------- | ---------------- | ----------------------------------------- |
+| Brute Force        | O(n²)           | O(1)             | Checks every pair (j > i)                 |
+| Optimized (Kadane) | O(n)            | O(1)             | Efficient using difference + max subarray |
