@@ -1,0 +1,86 @@
+
+import java.util.*;
+
+public class Reversethematrix_On_Row {
+    public static int[][] reverse(int arr[][]) {
+        int n = arr.length;
+
+        for (int i = 0; i < n; i++) {
+            int cols = arr[i].length;
+            for (int j = 0; j < cols / 2; j++) {
+                int temp = arr[i][j];
+                arr[i][j] = arr[i][cols - 1 - j];
+                arr[i][cols - 1 - j] = temp;
+            }
+        }
+
+        return arr;
+    }
+
+    public static int[][] reverse_better_way(int arr[][]) {
+        int n = arr.length;
+
+        for (int i = 0; i < arr.length; i++) {
+            int start = 0;
+            int end = arr[i].length - 1;
+
+            while (start < end) {
+                int temp = arr[i][start];
+                arr[i][start] = arr[i][end];
+                arr[i][end] = temp;
+
+                start++;
+                end--;
+            }
+        }
+        return arr;
+    }
+
+    public static void main(String[] args) {
+        int[][] arr = {
+                { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 }
+        };
+        int[][] answermartix = reverse(arr);
+        for (int i = 0; i < answermartix.length; i++) {
+            System.out.println(Arrays.toString(answermartix[i]));
+        }
+        System.out.println("//////////////////////////////////////////");
+        
+        int[][] answermartix2 = reverse_better_way(arr);
+        for (int i = 0; i < answermartix2.length; i++) {
+            System.out.println(Arrays.toString(answermartix2[i]));
+        }
+    }
+
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+| **Aspect**          | **Details**                                 | **Big-O Notation** |
+| ------------------- | ------------------------------------------- | ------------------ |
+| **Outer Loop**      | Runs `n` times (for each row)               | `O(n)`             |
+| **Inner Loop**      | Runs `m/2` times (half of each row)         | `O(m)`             |
+| **Total Time**      | Every element is visited once for swapping  | `O(n × m)`         |
+| **Extra Variables** | Only `temp` is used for swapping            | `O(1)`             |
+| **Total Space**     | No extra data structures, modifies in-place | `O(1)`             |
+
+////////////////////////////////////////////      NOTE  /////////////////////////////////////////////////
+
+/*
+ * NOTE:
+ * This program contains two methods to reverse each row of a 2D matrix:
+ * 1. reverse()            - Uses a for-loop
+ * 2. reverse_better_way() - Uses a while-loop
+ *
+ * Both methods modify the matrix in-place. So, after calling the first method,
+ * the original matrix gets changed.
+ *
+ * ➤ If you plan to use both methods one after another, make sure to:
+ *    - Use separate copies of the original matrix for each method
+ *    - OR comment out the first method call when testing the second one
+ *
+ * Example:
+ * // int[][] ans1 = reverse(copy1);   ← Comment this if testing reverse_better_way
+ *
+ * This ensures each method works on the original data and produces correct output.
+ */
