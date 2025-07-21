@@ -1,0 +1,63 @@
+import java.util.Arrays;
+
+public class T4SUM_array {
+    public static boolean check4sumBruteforce(int arr[], int target) {
+           Arrays.sort(arr);                      //OPTIONAL
+        int n = arr.length;
+        for (int i = 0; i < n - 3; i++) {
+            for (int j = i + 1; j < n - 2; j++) {
+                for (int k = j + 1; k < n - 1; k++) {
+                    for (int l = k + 1; l < n; l++) {
+                        int sum = arr[i] + arr[j] + arr[k] + arr[l];
+                        if (sum == target) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean check4sum___two_pointer(int arr[], int target) {
+         Arrays.sort(arr);                    //CUMPULSORY FOR LARGE ARRAY SPECIALY
+        int n = arr.length;
+        for (int i = 0; i < n - 3; i++) {
+            for (int j = i + 1; j < n-2; j++) {
+                int start = j + 1;
+                int end = n - 1;
+                long value_added_after_frst_two_element =(long) target - (arr[i] + arr[j]);
+                while (start < end) {
+                    long sum =(long) arr[start] + arr[end];
+                    if (sum == value_added_after_frst_two_element) {
+                        return true;
+                    } else if (sum > value_added_after_frst_two_element) {
+                        end--;
+                    } else {
+                        start++;
+                    }
+
+                }
+
+            }
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 5, 1, 0, 6, 0 };
+        boolean answer1 = check4sumBruteforce(arr, 7);
+        System.out.println("Bruteforce approach:- " + answer1);
+
+        boolean answer2 = check4sum___two_pointer(arr, 7);
+        System.out.println("Optimize Approach:- " + answer1);
+    }
+}
+
+
+| Approach        | Time Complexity (Without Sort)    | Sorting Time | Total Time Complexity | Space Complexity |
+| --------------- | --------------------------------- | ------------ | --------------------- | ---------------- |
+| **Brute Force** | O(n⁴)                             | None         | O(n⁴)                 | O(1)             |
+| **Two Pointer** | O(n²·log n) + O(n²) = O(n²·log n) | O(n log n)   | O(n²·log n)           | O(1)             |
