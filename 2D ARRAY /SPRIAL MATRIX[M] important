@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> list = new ArrayList<>();
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int top = 0, bottom = n - 1;
+        int left = 0, right = m - 1;
+
+        while (top <= bottom && left <= right) {
+            // left to right
+            for (int j = left; j <= right; j++) {
+                list.add(matrix[top][j]);
+            }
+            top++;
+
+            // top to bottom
+            for (int i = top; i <= bottom; i++) {
+                list.add(matrix[i][right]);
+            }
+            right--;
+
+            // right to left
+            if (top <= bottom) {
+                for (int j = right; j >= left; j--) {
+                    list.add(matrix[bottom][j]);
+                }
+                bottom--;
+            }
+
+            // bottom to top
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    list.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+        return list;
+    }
+
+    public class SpiralFormMatrix {
+        public static void main(String[] args) {
+            int[][] matrix = {
+                    { 3, 6, 4, 2 },
+                    { 7, 8, 11, 5 },
+                    { 9, 3, 10, 1 },
+                    { 17, 8, 5, 9 },
+            };
+            // Create an instance of the Solution class
+            Solution sol = new Solution();
+
+            // Call the spiralOrder method
+            List<Integer> result = sol.spiralOrder(matrix);
+
+            // Print the list
+            System.out.println("Spiral order:");
+            for (int i = 0; i < result.size(); i++) {
+                System.out.print(result.get(i) + " ");
+            }
+
+        }
+    }
+}
+
+
+Output:-|
+        | Spiral order:
+        | 3 6 4 2 5 1 9 5 8 17 9 7 8 11 10 3 
+
+| Metric               | Complexity                   |
+| -------------------- | ---------------------------- |
+| **Time Complexity**  | `O(n × m)`                   |
+| **Space Complexity** | `O(n × m)` (for result list) |
+if directly print the value then space is O(i) , this space only because of store the reslt
