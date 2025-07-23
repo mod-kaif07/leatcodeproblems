@@ -1,0 +1,73 @@
+//Approach    //rotate the matrix 90 anticlock waise,
+                                      this means it give same result when rotate the matrix 90 , 
+                                        3 times in clockwise  direction //
+
+
+
+import java.util.Arrays;
+
+public class Roate_matrix_90_ANTICLOCKWAISE {
+    public static void reverse(int arr[][]) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            int start = 0;
+            int end = arr[0].length - 1;
+            while (start < end) {
+                int temp = arr[i][start];
+                arr[i][start] = arr[i][end];
+                arr[i][end] = temp;
+                start++;
+                end--;
+            }
+        }
+    }
+
+    public static void rotateBteerway(int[][] arr) {
+
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < arr[0].length; j++) {
+                int temp = arr[i][j];
+                arr[i][j] = arr[j][i];
+                arr[j][i] = temp;
+            }
+        }
+        // to remate the matrix 90 ! first take the tesnpose of the original matrix and
+        // then reverse the matrix
+        reverse(arr);
+
+    }
+
+    public static void ROTATETHE_MATIX_90_ANTICLICKWAISE(int arr[][]) {
+        rotateBteerway(arr);
+        rotateBteerway(arr);
+        rotateBteerway(arr);
+
+                                    //rotate the matrix 90 anticlock waise,
+                                      this means it give same result when rotate the matrix 90 , 
+                                        3 times in clockwise  direction //
+    }
+
+    public static void main(String[] args) {
+        int[][] arr = {
+                { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 },
+                { 13, 14, 15, 16 },
+
+        };
+
+        System.out.println("Optimze approach");
+        ROTATETHE_MATIX_90_ANTICLICKWAISE(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(Arrays.toString(arr[i]));
+        }
+    }
+}
+
+output :- 
+                  Optimze approach
+                 [4, 8, 12, 16]
+                 [3, 7, 11, 15]
+                 [2, 6, 10, 14]
+                 [1, 5, 9, 13]
