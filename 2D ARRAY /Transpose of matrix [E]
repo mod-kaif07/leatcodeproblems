@@ -1,0 +1,44 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+public class Print_the_transpose_of_matrix {
+    public static int[][] transpose(int arr[][]) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr[i].length; j++) {
+
+                */We use j = i + 1 to avoid swapping elements twice and skip diagonal elements (i == j) 
+                  since swapping across the diagonal is symmetric.
+                  This ensures each pair is swapped only once, making the transpose correct and efficient.*/
+
+                int temp = arr[i][j];
+                arr[i][j] = arr[j][i];
+                arr[j][i] = temp;
+
+            }
+        }
+
+        return arr;
+    }
+
+    public static void main(String[] args) {
+        int[][] arr = {
+                { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 },
+                { 13, 14, 15, 16 },
+
+        };
+        int[][] answermatrix = transpose(arr);
+        for (int i = 0; i < answermatrix.length; i++) {
+            System.out.println(Arrays.toString(answermatrix[i]));
+        }
+    }
+}
+
+
+| Operation         | Complexity |
+| ----------------- | ---------- |
+| Time              | O(n × m)   |
+| Space (in-place)  | O(1)       |
+| Space (new array) | O(n × m)   |
+(if created new array )
