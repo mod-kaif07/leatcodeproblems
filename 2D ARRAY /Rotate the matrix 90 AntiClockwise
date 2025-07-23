@@ -97,6 +97,19 @@ public class Rotatein_AntiClockwaise {
 
 }
 
+output :-
+90+90+90=270 or anticlockwise 90: wala approach
+[4, 8, 12, 16]
+[3, 7, 11, 15]
+[2, 6, 10, 14]
+[1, 5, 9, 13]
+             or  (dont run at a sametime )
+first transpose ans colum wise reverse
+[4, 8, 12, 16]
+[3, 7, 11, 15]
+[2, 6, 10, 14]
+[1, 5, 9, 13]
+
 
 Overall Time and Space Complexity (for both approaches):
 Time Complexity: O(N²)
