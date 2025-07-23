@@ -68,6 +68,21 @@ public class Rotate_Matrix_90 {
     }
 }
 
+
+output :- 
+Brute force  approach
+[13, 9, 5, 1]
+[14, 10, 6, 2]
+[15, 11, 7, 3]
+[16, 12, 8, 4]
+
+Optimze approach
+[13, 9, 5, 1]
+[14, 10, 6, 2]
+[15, 11, 7, 3]
+[16, 12, 8, 4]
+
+
 | Approach             | Time Complexity | Space Complexity | Notes                        |
 | -------------------- | --------------- | ---------------- | ---------------------------- |
 | Brute Force          | O(N²)           | O(N²)            | Creates a new rotated matrix |
