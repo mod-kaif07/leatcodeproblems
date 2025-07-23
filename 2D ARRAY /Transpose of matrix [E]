@@ -20,6 +20,8 @@ public class Print_the_transpose_of_matrix {
         return arr;
     }
 
+
+
     public static void main(String[] args) {
         int[][] arr = {
                 { 1, 2, 3, 4 },
@@ -34,6 +36,13 @@ public class Print_the_transpose_of_matrix {
         }
     }
 }
+
+output:- 
+[1, 5, 9, 13]
+[2, 6, 10, 14]
+[3, 7, 11, 15]
+[4, 8, 12, 16]
+
 
 
 | Operation         | Complexity |
