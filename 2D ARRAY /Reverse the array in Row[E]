@@ -55,7 +55,22 @@ public class Reversethematrix_On_Row {
     }
 
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+output:-       (run a single function at a time if run 
+               both 1st time it wll reverse again 2nd function call it wll again reverse
+               the reversed anser result no chnage in matrix )
+[4, 3, 2, 1]
+[8, 7, 6, 5]
+[12, 11, 10, 9]
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 | **Aspect**          | **Details**                                 | **Big-O Notation** |
 | ------------------- | ------------------------------------------- | ------------------ |
 | **Outer Loop**      | Runs `n` times (for each row)               | `O(n)`             |
