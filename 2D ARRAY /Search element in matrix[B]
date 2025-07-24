@@ -1,32 +1,71 @@
+
 public class SearchingIN2D {
-    public static void searching(int arr[][], int t) {
+    public static void seracing(int arr[][], int t) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-                if (arr[i][j] == t) {
-                    System.out.println("Element found at: (" + i + ", " + j + ")");
-                    return; // stop after finding the first match
-                }
+                System.out.print(arr[i][j] + ",");
             }
         }
-        System.out.println("Element not found.");
+
+    }
+
+    public static void serach_better_way(int arr[][], int key) {
+        int n = arr.length;
+        int cols = arr[0].length;
+        for (int i = 0; i < n; i++) {
+
+            // Optimization: Check if the key can possibly exist in this row
+            if (arr[i][0] <= key && arr[i][cols - 1] >= key) { // If key is greater than the first element and less than
+                                                               // the last element
+                // of the current row, then only search this row.
+                //
+                // Why?
+                // → If the key is less than the first element of the row,
+                // or greater than the last element, there is no point in checking
+                // this row as the key can’t be here (because the row is sorted).
+                //
+                // → This condition helps us avoid **unnecessary binary search**
+                // in rows where the key definitely cannot be found.
+                int start = 0;
+                int end = cols - 1;
+                while (start <= end) {
+                    int mid = start + (end - start) / 2;
+                    if (arr[i][mid] == key) {
+                        System.out.println("Key found at: (" + i + ", " + mid + ")");
+                        return;
+                    } else if (arr[i][mid] > key) {
+                        end = mid - 1;
+
+                    } else {
+                        start = mid + 1;
+
+                    }
+
+                }
+
+            }
+        }
     }
 
     public static void main(String[] args) {
-        int[][] arr = {
-            { 1, 2, 3, 4 },
-            { 5, 6, 7, 8 },
-            { 9, 10, 11, 12 }
-        };
-
-        searching(arr, 7);
+        int[][] arr = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 } };
+         seracing(arr,7); //approach 2 :binary serach
+        serach_better_way(arr, 7);   // apprach 1 : normal interation 
     }
 }
 
 
+aproach 2:-  
+| ---------------- | ------------ |   |Best-case (key found early or most rows skipped):|
+| Time Complexity  | O(n × log m) |   |      O(log m) → only one row searched           |
+| Space Complexity | O(1)         |   |                                                 |
+
+
+
+approach 1:-
 | **Aspect**           | **Value**     | **Explanation**                                              |
 | -------------------- | ------------- | ------------------------------------------------------------ |
 | **Time Complexity**  | O(n × m)      | You check each element once in the 2D array of size `n × m`. |
 | **Space Complexity** | O(1)          | No extra space is used except loop variables.                |
-| **Best Case**        | O(1)          | If the target is found at the first element.                 |
-| **Worst Case**       | O(n × m)      | If the target is at the last position or not present at all. |
-| **Input Format**     | `int[][] arr` | A 2D array with `n` rows and `m` columns.                    |
+
+
