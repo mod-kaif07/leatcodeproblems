@@ -1,0 +1,47 @@
+
+public class serach_in_sorted_row_col_wise {
+
+    public static boolean checkforelemnt(int arr[][], int key) {
+        int n = arr.length;
+        int clos = arr[0].length;
+        for (int i = 0; i < n; i++) {
+            if (arr[i][0] <= key && arr[i][clos - 1] >= key) {
+                int start = 0;
+                int end = clos - 1;
+                while (start <= end) {
+                    int mid = start + (end - start) / 2;
+                    if (arr[i][mid] == key) {
+                        return true;
+                    } else if (arr[i][mid] > key) {
+                        end = mid - 1;
+
+                    } else {
+                        start = mid + 1;
+                    }
+                }
+
+            }
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                { 1, 5, 9, 11 },
+                { 14, 20, 21, 26 },
+                { 30, 34, 43, 50 }
+        };
+        boolean checking = checkforelemnt(matrix, 43);
+        System.out.println(checking);
+    }
+}
+
+
+//////////////////////////////////   output:- True; ////////////////////////////////////////////////////////
+
+| Metric               | Complexity     |
+| -------------------- | -------------- |
+| **Time Complexity**  | `O(n * log m)` |
+| **Space Complexity** | `O(1)`         |
+
