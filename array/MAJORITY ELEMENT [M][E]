@@ -1,0 +1,97 @@
+public class majority_element {
+    public static int majority(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = 0; j < n; j++) {
+                if (arr[j] == arr[i]) {
+                    count++;
+                }
+            }
+            if (count > n / 2) {
+                return arr[i];
+            }
+        }
+
+        return -1;
+    }
+
+    public static int optimize_majority(int arr[]) {
+        int cadinates = arr[0];
+        int n = arr.length;
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (cadinates == arr[i]) {
+                count++;
+
+            } else {
+                count--;
+
+            }
+            if (count == 0) {
+                cadinates = arr[i];
+                count++;
+            }
+        }
+        return cadinates;
+    }
+
+    public static int geeksforgeeks_question_soln(int arr[]) {       /// this approach in medium for geeksforgeeks 
+
+        int n = arr.length;
+        int cadimates = arr[0];
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == cadimates) {
+                count++;
+
+            } else {
+                count--;
+            }
+            if (count == 0) {
+                cadimates = arr[i];
+                count++;
+            }
+        }
+        count = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == cadimates) {
+                count++;
+            }
+        }
+        if (count > n / 2) {        //IN GEEKS FOR GEEKS AT LAST THERE IS NO SURETY FOR 
+                                     //MAJORITY ELEMENT IN ALWAYS GREATER THA N/2 
+                                     //THAT MAKE QUESTION MEDIUM 
+            return cadimates;
+        }
+        return -1;
+
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { -1, -1, -1, 2, 3, -1 };
+        int elemnt1 = majority(arr);
+        System.out.println("BRUTE FORCE:-" + elemnt1);
+
+        int elemnt2 = optimize_majority(arr);
+        System.out.println("OPTIMZE APPROACH :-" + elemnt2);
+
+        int geeksforgeeks = geeksforgeeks_question_soln(arr);
+        System.out.println("OPTIMZE APPROACH GEEKSFORGEEKS:-" + geeksforgeeks);
+    }
+}
+
+
+
+OUTPUT :-  BRUTE FORCE:--1
+OPTIMZE APPROACH :--1
+OPTIMZE APPROACH GEEKSFORGEEKS :--1
+
+
+
+| Method                        | Time Complexity | Space Complexity | Correct?                  |
+| ----------------------------- | --------------- | ---------------- | ------------------------- |
+| `majority` (Brute Force)      | O(n²)           | O(1)             | ✅ Yes                     |
+| `optimize_majority`           | O(n)            | O(1)             | ❌ Maybe (no verification) | work only when sure one element is present N/2
+| `geeksforgeeks_question_soln` | O(n)            | O(1)             | ✅ Yes                     |
+
