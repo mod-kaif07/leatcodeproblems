@@ -1,0 +1,30 @@
+class Solution {
+    ArrayList<Integer> findTwoElement(int arr[]) {
+        // code here
+         int answerarr[]=new int  [arr.length+1];
+             ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0;i<arr.length;i++){
+            answerarr[arr[i]]++;
+        }
+       
+        
+        for(int i=1;i<=arr.length;i++){
+            if(answerarr[i]==0){
+                list.add(i);
+            }
+            else if(answerarr[i]>1){
+                list.add(0,i);
+            }
+        }
+        return list;
+    }
+}
+
+                          |       Input: arr[] = [2, 2]
+                          |        Output: [2, 1]
+                          |    Explanation: Repeating number is 2 and the missing number is 1.
+
+| Complexity Type      | Value  |
+| -------------------- | ------ |
+| **Time Complexity**  | `O(n)` |
+| **Space Complexity** | `O(n)` |
