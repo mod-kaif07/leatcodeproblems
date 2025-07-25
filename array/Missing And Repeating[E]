@@ -43,21 +43,26 @@ SC = O(1)   // Ignoring output list size
 class Solution {
     ArrayList<Integer> findTwoElement(int arr[]) {
         // code here
-         int answerarr[]=new int  [arr.length+1];
+        int n = arr.length;
+         int answerarr[]=new int  [n+1];
              ArrayList<Integer> list = new ArrayList<>();
-        for(int i=0;i<arr.length;i++){
+        for(int i=0;i<n;i++){
             answerarr[arr[i]]++;
         }
        
-        
-        for(int i=1;i<=arr.length;i++){
+       int repeating = -1;
+        int missing = -1;
+        for(int i=1;i<=n;i++){
             if(answerarr[i]==0){
-                list.add(i);
+               missing=i;
             }
             else if(answerarr[i]>1){
-                list.add(0,i);
+                    repeating=i; 
             }
         }
+        list.add(0,repeating);
+        list.add(1,missing);
+        
         return list;
     }
 }
