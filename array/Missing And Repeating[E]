@@ -1,3 +1,45 @@
+APPROACH 1:-----------------------------------------------------------------
+class Solution {
+    ArrayList<Integer> findTwoElement(int arr[]) {
+        // code here
+        int n= arr.length;
+          ArrayList<Integer> result = new ArrayList<>();
+          for(int i=0;i<n;i++){
+              arr[i]--;
+          }
+          for(int i=0;i<n;i++){
+               arr[arr[i] % n] += n;
+          }
+          //repating
+          
+           int repeating = -1, missing = -1;
+        for (int i = 0; i < n; i++) {
+            int freq = arr[i] / n;
+
+            if (freq == 2) repeating = i + 1;
+            if (freq == 0) missing = i + 1;
+        }
+
+        result.add(repeating);
+        result.add(missing);
+        return result;
+        
+    }
+} 
+        
+TC = O(n) + O(n) + O(n) = O(n)
+SC = O(1)   // Ignoring output list size
+| Metric           | Complexity |
+| ---------------- | ---------- |
+| Time Complexity  | `O(n)`     |
+| Space Complexity | `O(1)`     |
+
+
+        
+        
+        
+        
+  APPROACH 2:-----------------------------------------------------------------
 class Solution {
     ArrayList<Integer> findTwoElement(int arr[]) {
         // code here
