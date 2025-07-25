@@ -20,8 +20,8 @@ class Solution {
             if (freq == 0) missing = i + 1;
         }
 
-        result.add(repeating);
-        result.add(missing);
+        result.add(0,repeating);
+        result.add(1,missing);
         return result;
         
     }
