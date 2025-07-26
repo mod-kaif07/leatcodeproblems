@@ -1,0 +1,196 @@
+public class pattern_part2_M {
+
+    public static void printing(int n) {
+        System.out.println("printing");
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+
+                System.out.print("*" + " ");
+
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printing_pattern_numbers(int n) {
+        System.out.println("printing_pattern_numbers");
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+
+                System.out.print(j + " ");
+
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printing_pattern_numbers_accending(int n) {
+        System.out.println("printing_pattern_numbers_accending");
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+
+                System.out.print(i + " ");
+
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printing_pattern_numbers_decending(int n) {
+
+        System.out.println("printing_pattern_numbers_decending");
+        for (int i = 1; i <= n; i++) {
+            for (int j = i; j >= 1; j--) {
+
+                System.out.print(j + " ");
+
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printing_pattern_alphabets(int n) {
+
+        System.out.println("printing_pattern_alphabets");
+        char ch = 'a';
+        for (int i = 1; i <= n; i++) { // i = row
+            for (int j = 1; j <= i; j++) {
+
+                System.out.print(ch + " ");
+
+            }
+            ch++;
+            System.out.println();
+        }
+    }
+
+    // Be carefull about the condition to check
+    public static void printing_pattern_upsidedown(int n) {
+
+        System.out.println("printing_pattern_upsidedown");
+        for (int i = 1; i <= n; i++) { // i = row
+            for (int j = 1; j <= n - (i - 1); j++) { // n - (i - 1)== n-i+1 same thing
+
+                System.out.print("*" + " ");
+
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void printing_numbers_upsidedown(int n) {
+
+        System.out.println("printing_numbers_upsidedown");
+        for (int i = 1; i <= n; i++) { // i = row
+            for (int j = 1; j <= n - (i - 1); j++) { // n - (i - 1)== n-i+1 same thing
+
+                System.out.print(j + " "); // we see it will chnage with column or j
+
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void printing_numbers_upsidedown_column_constant(int n) {
+        System.out.println("printing_numbers_upsidedown_column_constant");
+
+        for (int i = 1; i <= n; i++) { // i = row
+            for (int j = 1; j <= i; j++) { // n - (i - 1)== n-i+1 same thing
+
+                System.out.print(n - j + 1 + " "); // we see it will chnage with column or j
+
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        printing(n);
+        System.out.println();
+
+        printing_pattern_numbers(n);
+        System.out.println();
+
+        printing_pattern_numbers_accending(n);
+        System.out.println();
+
+        printing_pattern_numbers_decending(n);
+        System.out.println();
+
+        printing_pattern_alphabets(n);
+        System.out.println();
+
+        printing_pattern_upsidedown(n);
+        System.out.println();
+
+        printing_numbers_upsidedown(n);
+        System.out.println();
+
+        printing_numbers_upsidedown_column_constant(n);
+        System.out.println();
+    }
+}
+
+
+output:------------------
+
+printing
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+
+printing_pattern_numbers
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+
+printing_pattern_numbers_accending
+1 
+2 2 
+3 3 3 
+4 4 4 4 
+5 5 5 5 5 
+
+printing_pattern_numbers_decending
+1 
+2 1 
+3 2 1 
+4 3 2 1 
+5 4 3 2 1 
+
+printing_pattern_alphabets
+a 
+b b 
+c c c 
+d d d d 
+e e e e e 
+
+printing_pattern_upsidedown
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+
+printing_numbers_upsidedown
+1 2 3 4 5 
+1 2 3 4 
+1 2 3 
+1 2 
+1 
+
+printing_numbers_upsidedown_column_constant
+5 
+5 4 
+5 4 3 
+5 4 3 2 
+5 4 3 2 1 
