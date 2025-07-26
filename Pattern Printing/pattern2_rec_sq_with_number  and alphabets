@@ -1,0 +1,157 @@
+
+public class pattern2_rec_sq_with_number {
+
+    public static void accendingpattern(int n) {
+        System.out.println("Increasing Pattern");
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+
+    }
+
+    public static void decreasingpattern(int n) {
+        System.out.println("Decreasing Pattern");
+        for (int i = 1; i <= n; i++) {
+            for (int j = n; j >= 1; j--) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void SqaureNumber_pattern(int n) {
+        System.out.println("SqaureNumber_pattern");
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.print(j * j + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Alphabets_pattern(int n) {
+        char c = 'a';
+        System.out.println("Alphabets_pattern");
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.print(c + " ");
+            }
+            c++;
+            System.out.println();
+        }
+    }
+
+    public static void Alphabets_pattern_row_wise(int n) {
+        char c = 'a';
+        System.out.println("Alphabets_pattern_row_wise");
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.print(c + " ");
+                c++;
+            }
+            c = 'a';
+
+            System.out.println();
+        }
+    }
+
+    public static void contunie_incresing_to_last(int n) {
+        int count = 1;
+        System.out.println("contunie_incresing_to_last");
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.print(count + " ");
+                count++;
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 8;
+        accendingpattern(n);
+        System.out.println();
+
+        decreasingpattern(n);
+        System.out.println();
+
+        SqaureNumber_pattern(n);
+        System.out.println();
+
+        Alphabets_pattern(n);
+        System.out.println();
+
+        Alphabets_pattern_row_wise(n);
+        System.out.println();
+
+        contunie_incresing_to_last(n);
+
+    }
+}
+
+
+output :-------
+
+Increasing Pattern
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+
+Decreasing Pattern
+8 7 6 5 4 3 2 1 
+8 7 6 5 4 3 2 1 
+8 7 6 5 4 3 2 1 
+8 7 6 5 4 3 2 1 
+8 7 6 5 4 3 2 1 
+8 7 6 5 4 3 2 1 
+8 7 6 5 4 3 2 1 
+8 7 6 5 4 3 2 1 
+
+SqaureNumber_pattern
+1 4 9 16 25 36 49 64 
+1 4 9 16 25 36 49 64 
+1 4 9 16 25 36 49 64 
+1 4 9 16 25 36 49 64 
+1 4 9 16 25 36 49 64 
+1 4 9 16 25 36 49 64 
+1 4 9 16 25 36 49 64 
+1 4 9 16 25 36 49 64 
+
+Alphabets_pattern
+a a a a a a a a 
+b b b b b b b b 
+c c c c c c c c 
+d d d d d d d d 
+e e e e e e e e 
+f f f f f f f f 
+g g g g g g g g 
+h h h h h h h h 
+
+Alphabets_pattern_row_wise
+a b c d e f g h 
+a b c d e f g h 
+a b c d e f g h 
+a b c d e f g h 
+a b c d e f g h 
+a b c d e f g h 
+a b c d e f g h 
+a b c d e f g h 
+
+contunie_incresing_to_last
+1 2 3 4 5 6 7 8 
+9 10 11 12 13 14 15 16 
+17 18 19 20 21 22 23 24 
+25 26 27 28 29 30 31 32 
+33 34 35 36 37 38 39 40 
+41 42 43 44 45 46 47 48 
+49 50 51 52 53 54 55 56 
+57 58 59 60 61 62 63 64 
