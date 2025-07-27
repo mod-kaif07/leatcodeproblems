@@ -1,0 +1,144 @@
+public class print_star_right_side {
+
+    public static void Right_Aligned_Star_Triangle(int n) {
+
+        System.out.println("Right-Aligned Star Triangle");
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Right_Aligned_Number_Triangle(int n) {
+
+        System.out.println("Right-Aligned Number Triangle (Repeating Row Number)");
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Right_Aligned_Number_Triangle_incresing(int n) {
+
+        System.out.println("Right -Aligned Number Triangle (Increasing Numbers per Row)");
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Alphabet_Triangle_Increasing_Letters(int n) {
+
+        System.out.println("Right -Aligned Alphabet Triangle (Increasing Letters");
+
+        char ch = 'A';
+        for (int i = 1; i <= n; i++) {
+            ch = 'A';
+
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" " + " "); // printing for space
+            }
+            for (int j = 1; j <= i; j++) {// printing for alphabtes
+                System.out.print(ch + " ");
+                ch++;
+
+            }
+            System.out.println();
+
+        }
+    }
+
+    public static void Inverted_Number_Triangle_Decreasing_from_Row_Number(int n) {
+
+        System.out.println("Left-Aligned Inverted Number Triangle (Decreasing from Row Number)");
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" " + " "); // printing for space
+            }
+            for (int j = i; j >= 1; j--) {// printing for alphabtes
+                System.out.print(j + " ");
+
+            }
+            System.out.println();
+
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+
+        Right_Aligned_Star_Triangle(n);
+        System.out.println();
+
+        Right_Aligned_Number_Triangle(n);
+        System.out.println();
+
+        Right_Aligned_Number_Triangle_incresing(n);
+        System.out.println();
+
+        Alphabet_Triangle_Increasing_Letters(n);
+        System.out.println();
+
+        Inverted_Number_Triangle_Decreasing_from_Row_Number(n);
+        System.out.println();
+    }
+}
+
+
+
+output:----------
+
+Right-Aligned Star Triangle
+        * 
+      * * 
+    * * * 
+  * * * * 
+* * * * * 
+
+Right-Aligned Number Triangle (Repeating Row Number)
+        1 
+      2 2 
+    3 3 3 
+  4 4 4 4 
+5 5 5 5 5 
+
+Right -Aligned Number Triangle (Increasing Numbers per Row)
+        1 
+      1 2 
+    1 2 3 
+  1 2 3 4 
+1 2 3 4 5 
+
+Right -Aligned Alphabet Triangle (Increasing Letters
+        A 
+      A B 
+    A B C 
+  A B C D 
+A B C D E 
+
+Left-Aligned Inverted Number Triangle (Decreasing from Row Number)
+        1 
+      2 1 
+    3 2 1 
+  4 3 2 1 
+5 4 3 2 1 
