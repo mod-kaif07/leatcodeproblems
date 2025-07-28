@@ -1,0 +1,216 @@
+public class pattern_priting_hard {
+    public static void pyramid_star_printing(int n) {
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < n - i; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i * 2 - 1; j++) {
+                System.out.print("*" + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void pyramid_star_printing_number(int n) {
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+            for (int j = i - 1; j >= 1; j--) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void pyramid_star_printing_inverting(int n) {
+        for (int i = n; i >= 1; i--) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i * 2 - 1; j++) {
+                System.out.print("*" + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Something_Like_heart(int n) {
+        for (int i = n; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+            int f = (n * 2) - (i * 2);
+            for (int j = 1; j <= f; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+            System.out.println();
+        }
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+            int f = (n * 2) - (i * 2);
+            for (int j = 1; j <= f; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void butterfly(int n) {
+
+        for (int i = 1; i <= n; i++) {
+            // part1
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+
+                                     // for (int j = 1; j <= n - i; j++) {
+                                  // System.out.print(" " + " ");
+                                    // }
+
+     // part2
+                                      // for (int j = 1; j <= n - i; j++) {
+                                      // System.out.print(" " + " ");
+                                        // }
+            for (int j = 1; j <= 2 * n - 2 * i; j++) {
+                System.out.print(" " + " ");
+            }
+
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+
+            System.out.println();
+        }
+
+        for (int i = n - 1; i >= 1; i--) {
+            // part3
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+                                          // for (int j = 1; j <= n - i; j++) {
+                                              // System.out.print(" " + " ");
+                                            // }
+            // // part4
+                                            // for (int j = 1; j <= n - i; j++) {
+                                            // System.out.print(" " + " ");
+                                           // }
+            for (int j = 1; j <= 2 * n - 2 * i; j++) {
+                System.out.print(" " + " ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+            System.out.println();
+        }
+
+    }
+
+    public static void Diamond(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+            System.out.println();
+        }
+        for (int i = n; i >= 1; i--) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*" + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        pyramid_star_printing(n);
+        System.out.println();
+
+        pyramid_star_printing_number(n);
+        System.out.println();
+
+        pyramid_star_printing_inverting(n);
+        System.out.println();
+
+        Something_Like_heart(n);
+        System.out.println();
+
+        butterfly(n);
+        System.out.println();
+
+        Diamond(n);
+        System.out.println();
+    }
+}
+
+
+output :---------------------
+
+      * 
+    * * * 
+  * * * * * 
+* * * * * * * 
+
+        1 
+      1 2 1 
+    1 2 3 2 1 
+  1 2 3 4 3 2 1 
+1 2 3 4 5 4 3 2 1 
+
+* * * * * * * * * 
+  * * * * * * * 
+    * * * * * 
+      * * * 
+        * 
+
+* * * * * * * * * * 
+* * * *     * * * * 
+* * *         * * * 
+* *             * * 
+*                 * 
+*                 * 
+* *             * * 
+* * *         * * * 
+* * * *     * * * * 
+* * * * * * * * * * 
+
+*                 * 
+* *             * * 
+* * *         * * * 
+* * * *     * * * * 
+* * * * * * * * * * 
+* * * *     * * * * 
+* * *         * * * 
+* *             * * 
+*                 * 
+
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 
