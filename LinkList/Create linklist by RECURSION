@@ -1,0 +1,48 @@
+public class createLinklist_recusion {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node head;
+
+    public Node createLinklist__with_recusion(int arr[], int idex, int size) {
+        if (idex == size) {
+            return null;
+
+        }
+        Node temp = new Node(arr[idex]);
+        temp.next = createLinklist__with_recusion(arr, idex + 1, size);
+        return temp;
+    }
+
+    public void display(Node head) {
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " -> ");
+            curr = curr.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        createLinklist_recusion cs = new createLinklist_recusion();
+        int arr[] = { 2, 4, 6, 8, 10 };
+        Node head = cs.createLinklist__with_recusion(arr, 0, arr.length);
+        cs.display(head);
+
+    }
+}
+
+output :-    
+  2 -> 4 -> 6 -> 8 -> 10 -> null
