@@ -48,6 +48,19 @@ public class basic_operation {
         tail = newNode;
     }
 
+    public void addMiddle(int data, int index) {
+        Node newNode = new Node(data);
+        Node temp = head;
+        int idx=0;
+        while (idx < index-1 && temp!=null) {
+
+            temp = temp.next;
+            idx++;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
     public static void main(String[] args) {
         basic_operation ll = new basic_operation();
         int arr[] = { 2, 4, 6, 8, 10 };
@@ -57,8 +70,10 @@ public class basic_operation {
         ll.print();
         int arr2[] = { 2, 4, 6, 8, 10 };
         for (int i = 0; i < arr2.length; i++) {
-            ll.addlast(arr2[i]);
+        ll.addlast(arr2[i]);
         }
+        ll.print();
+        ll.addMiddle(50, 2);
         ll.print();
 
         System.out.println("Head >- poitning :-  " + ll.head.data);
@@ -68,10 +83,10 @@ public class basic_operation {
 }
 
 
-output:-  
-
+output :--
 10 -> 8 -> 6 -> 4 -> 2 -> null
 10 -> 8 -> 6 -> 4 -> 2 -> 2 -> 4 -> 6 -> 8 -> 10 -> null
+10 -> 8 -> 50 -> 6 -> 4 -> 2 -> 2 -> 4 -> 6 -> 8 -> 10 -> null
 Head >- poitning :-  10
 Head next poitning:-  8
 tail poitning:-  10
