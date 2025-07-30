@@ -1,0 +1,77 @@
+
+public class basic_operation {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public void addlast(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+
+        }
+        tail.next = newNode;
+        tail = newNode;
+    }
+
+    public static void main(String[] args) {
+        basic_operation ll = new basic_operation();
+        int arr[] = { 2, 4, 6, 8, 10 };
+        for (int i = 0; i < arr.length; i++) {
+            ll.add(arr[i]);
+        }
+        ll.print();
+        int arr2[] = { 2, 4, 6, 8, 10 };
+        for (int i = 0; i < arr2.length; i++) {
+            ll.addlast(arr2[i]);
+        }
+        ll.print();
+
+        System.out.println("Head >- poitning :-  " + ll.head.data);
+        System.out.println("Head next poitning:-  " + ll.head.next.data);
+        System.out.println("tail poitning:-  " + ll.tail.data);
+    }
+}
+
+
+output:-  
+
+10 -> 8 -> 6 -> 4 -> 2 -> null
+10 -> 8 -> 6 -> 4 -> 2 -> 2 -> 4 -> 6 -> 8 -> 10 -> null
+Head >- poitning :-  10
+Head next poitning:-  8
+tail poitning:-  10
