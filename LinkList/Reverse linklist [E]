@@ -1,0 +1,69 @@
+public class Reverse_linklist {
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void addvalue(int data) { // addlast i have add linklsit in sequence
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node reverse(Node head) {
+        Node curr = head;
+        Node prev = null;
+        Node next = null;
+        while (curr != null ) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head=prev;
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Reverse_linklist rs = new Reverse_linklist();
+        int arr[] = { 2, 4, 6, 8, 10 };
+        for (int i = 0; i < arr.length; i++) {
+            rs.addvalue(arr[i]);
+        }
+        rs.print();
+        rs.head = rs.reverse(head);
+        rs.print();
+    }
+}
+
+Output:------------------
+Original linklsit: 2 -> 4 -> 6 -> 8 -> 10 -> null
+Reverse linklsit: 10 -> 8 -> 6 -> 4 -> 2 -> null
