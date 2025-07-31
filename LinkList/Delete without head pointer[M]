@@ -1,0 +1,26 @@
+
+iss question mein head nhi diya apko aik diye elemnt to remove karna hn , yeh hn ki wo last elemnt nhi hoga 
+tho hum phele jis element ko delete karna hn[curr] usko next mein aik temp node create karte hn 
+aur uske bad temp key data ko curr key data sai chnage kar dete hn [  curr.data= temp.data;],
+fir temep ko remove kar dete hn current ko temp key next sai connect karke 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+    public void deleteNode(Node curr) {
+        // code here
+        Node temp=curr.next;
+       curr.data= temp.data;
+        curr.next=temp.next;
+    }
+}
+
+
+
+Input: Linked List = 1 -> 2, del_node = 1
+Output: 2
+Explanation: After deleting 1 from the linked list, we have remaining nodes as 2.
+
+nput: Linked List = 10 -> 20 -> 4 -> 30, del_node = 20
+Output: 10->4->30
+Explanation: After deleting 20 from the linked list, we have remaining nodes as 10, 4, 30.
