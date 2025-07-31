@@ -1,0 +1,70 @@
+
+
+public class ReverseLinklist_with_recusion {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node head;
+
+    public Node createLinklist__with_recusion(int arr[], int idex, int size) {
+        if (idex == size) {
+            return null;
+
+        }
+        Node temp = new Node(arr[idex]);
+        temp.next = createLinklist__with_recusion(arr, idex + 1, size);
+        return temp;
+    }
+
+    public Node reverse_linklist_recursion(Node curr, Node prev) {
+        if (curr == null) {
+            return prev;
+        }
+        Node future = curr.next;
+        curr.next = prev;
+
+        return reverse_linklist_recursion(future, curr);
+    }
+
+    public void display(Node head) {
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " -> ");
+            curr = curr.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        ReverseLinklist_with_recusion cs = new ReverseLinklist_with_recusion();
+        int arr[] = { 2, 4, 6, 8, 10 };
+        Node head = cs.createLinklist__with_recusion(arr, 0, arr.length);
+       System.out.println("Original List:");
+        cs.display(head);
+
+        // Step 2: Reverse the linked list recursively
+        head = cs.reverse_linklist_recursion(head, null);
+
+        System.out.println("Reversed List:");
+        cs.display(head);
+
+    }
+}
+
+OUTPUT----------------------------------
+Original List:
+2 -> 4 -> 6 -> 8 -> 10 -> null
+Reversed List:
+10 -> 8 -> 6 -> 4 -> 2 -> null
