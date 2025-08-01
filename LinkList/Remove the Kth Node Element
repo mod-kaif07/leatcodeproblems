@@ -1,0 +1,112 @@
+public class Remove_every_k_node {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node removekthnode(Node head, int k) { // mera wla tarika
+        Node temp = head;
+        int count = 1;
+        while (temp != null) {
+            if (count == k - 1) {
+                temp.next = temp.next.next;
+                count = 1;
+            } else {
+                count++;
+            }
+
+            temp = temp.next;
+        }
+
+        return head;
+    }
+
+    public Node removNode(Node head, int k) {
+                                       // coder army approach  prev and currnt Node acess
+
+        if (head == null && k == 1) {
+            return head;
+        }
+        if (k == 1) {
+            return null;
+        }
+        Node prev = null;
+        Node curr = head;
+        int count = 1;
+        while (curr != null && curr.next != null) {
+
+            if (count == k) {
+                prev.next = curr.next;
+                curr = prev.next;
+                count = 1;
+
+            } else {
+                prev = curr;
+                curr = curr.next;
+                count++;
+            }
+
+        }
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Remove_every_k_node re = new Remove_every_k_node();
+        int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        for (int i = arr.length - 1; i >= 0; i--) {
+            re.add(arr[i]);
+        }
+        System.out.print("Original list: ");
+        re.print();
+
+        // re.head = re.removekthnode(head, 2);
+        // System.out.print("Afer removed Node(temp approach): ");
+        // re.print();
+
+        re.head = re.removNode(head, 2);
+        System.out.print("Afer removed Node(prev and curr ): ");
+        re.print();
+
+    }
+
+  output--------------------
+Original list: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> null
+Afer removed Node(prev and curr ): 1 -> 3 -> 5 -> 7 -> 9 -> 10 -> null
+
+Original list: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> null
+Afer removed Node(temp approach): 1 -> 3 -> 5 -> 7 -> 9 -> null
+
+
