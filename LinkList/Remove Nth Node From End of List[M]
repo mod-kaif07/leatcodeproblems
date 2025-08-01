@@ -1,0 +1,108 @@
+
+import java.util.*;
+
+public class Remove_the_elemnt_from_Nth_Node_end {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public static Node removeNthnode(Node head, int del_index) {
+        int count = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            count++;
+        }
+        if(head==null){
+            return head.next;
+        }
+        temp = head;
+        for(int i=1;i<count-del_index;i++){
+            temp=temp.next;
+        }
+        temp.next = temp.next.next;
+
+        return head;
+    }
+    public Node removeNthFromEnd(Node head, int n) {
+        Node fast = head;
+        Node slow = head;
+
+        for (int i = 1; i <= n; i++) {
+            fast = fast.next;
+        }
+        if (fast == null) {  
+            //it is case of where n= length  so send all  except head , ie head.next return 
+            return head.next;
+        }
+        while (fast != null && fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        
+        slow.next = slow.next.next;
+        return head;
+    }
+
+
+    public static void main(String[] args) {
+        Remove_the_elemnt_from_Nth_Node_end re = new Remove_the_elemnt_from_Nth_Node_end();
+        int arr[] = { 9, 1, 4, 7, 5, 8, 0 };
+        for (int i = arr.length - 1; i >= 0; i--) {
+            re.add(arr[i]);
+        }
+        re.print();
+        // re.head = re.removeNthnode(head, 5);
+        // System.out.print("Update Linklist: ");  
+        // re.print();
+
+        re.head=re.removeNthFromEnd(head, 5);
+        System.out.print("optimze approach: ");
+        re.print();
+    }
+}
+
+
+output:- run both the approach one by one to get same answer if you run same time one will chnage list 
+           and chnage last again chnage from other approach 
+
+
+Original list: 9 -> 1 -> 4 -> 7 -> 5 -> 8 -> 0 -> null
+optimze approach: 9 -> 1 -> 7 -> 5 -> 8 -> 0 -> null
+
+Original list: 9 -> 1 -> 4 -> 7 -> 5 -> 8 -> 0 -> null
+Update Linklist: 9 -> 1 -> 7 -> 5 -> 8 -> 0 -> null
