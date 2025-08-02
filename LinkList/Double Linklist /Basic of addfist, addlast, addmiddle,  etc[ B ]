@@ -1,0 +1,167 @@
+
+public class basicdll {
+    class Node {
+        int data;
+        Node next;
+        Node back;
+
+        public Node(int data, Node next, Node back) {
+            this.data = data;
+            this.next = next;
+            this.back = null;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+            this.back = null;
+        }
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " <->");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public void addstart(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+
+        if (head != null) {
+            head.back = newNode; // only in double linklist becoz it conation back or prev data
+        } else {
+            tail = newNode;
+        }
+
+        head = newNode;
+    }
+
+    public void addLast(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        tail.next = newNode;
+        newNode.back = tail;
+        tail = newNode;
+    }
+
+    public Node addMiddle(int data, int idex) {
+
+        Node newNode = new Node(data); // add element right after the index value
+        if (idex == 0) {
+            if (head == null) {
+                return newNode;
+            }
+            newNode.next = head;
+            head.back = newNode;
+            head = newNode;
+
+            return head;
+        }
+        Node temp = head;
+        int count = 0;
+        while (count < idex) {
+            temp = temp.next;
+            count++;
+        }
+        if (temp == null) {
+            tail.next = newNode;
+            newNode.back = tail;
+            tail = newNode;
+            return head;
+        }
+        newNode.next = temp;
+        newNode.back = temp.next;
+        temp.back.next = newNode;
+        temp.back = newNode;
+
+        return head;
+    }
+
+    public Node Deletedfirst(Node head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        if (head.next != null) {
+            return head.next;
+        }
+
+        head = head.next;
+        head.back = null;
+        return head;
+    }
+
+    public Node Deleted_end(Node head) {
+        if (head == null || head.next == null) {
+            tail = null;
+            return null;
+        }
+
+        Node temp = tail.back;
+        tail.back = null;
+        temp.next = null;
+        tail = temp;
+        return head;
+    }
+
+    public Node Deleted_particular_index(Node head, int idex) {
+        int count = idex;
+        Node temp = head;
+
+        if (idex == 1) {
+                                 //handle the ist value 
+            head = head.next;
+            head.back = null;
+            return head;
+        }
+
+        while (count != 1) {
+            temp = temp.next;
+            count--;
+
+        }
+        if (temp.next == null) {  //handle the last index 
+            temp.back.next = null;
+            tail=temp.back;
+        } else {
+            temp.back.next = temp.next;
+            temp.next.back = temp.back;
+        }
+        return head;
+
+    }
+
+    public static void main(String[] args) {
+        basicdll dll = new basicdll();
+        int arr[] = { 2, 4, 8, 9, 0 };
+        for (int i = 0; i < arr.length; i++) {
+            dll.addLast(arr[i]);
+
+        }
+        dll.print();
+        // dll.head = dll.addMiddle(5, 2);
+        // dll.print();
+
+        // dll.head = dll.Deletedfirst(head);
+        // dll.print();
+
+        // dll.head = dll.Deleted_end(head);
+        // dll.print();
+
+        dll.head = dll.Deleted_particular_index(head, 1);
+        dll.print();
+
+        System.out.println("Head of Double Linklist: " + dll.head.data);
+        System.out.println("Tail of Double Linklist: " + dll.tail.data);
+    }
+
+}
