@@ -1,4 +1,6 @@
 
+IMPORTANT ------------------------
+
 public class basicdll {
     class Node {
         int data;
@@ -114,13 +116,22 @@ public class basicdll {
     }
 
     public Node Deleted_particular_index(Node head, int idex) {
+        if (head == null || idex <= 0)
+            return head;
+
         int count = idex;
         Node temp = head;
+        if (head.next == null && idex == 1) {
+            tail = null;
+            return null;
+        }
 
         if (idex == 1) {
-                                 //handle the ist value 
+            // handle the ist value
             head = head.next;
-            head.back = null;
+            if (head != null) {
+                head.back = null;
+            }
             return head;
         }
 
@@ -129,9 +140,13 @@ public class basicdll {
             count--;
 
         }
-        if (temp.next == null) {  //handle the last index 
+        if (temp == null) {
+            return head;
+        }
+
+        if (temp.next == null) { // handle the last index
             temp.back.next = null;
-            tail=temp.back;
+            tail = temp.back;
         } else {
             temp.back.next = temp.next;
             temp.next.back = temp.back;
@@ -142,7 +157,7 @@ public class basicdll {
 
     public static void main(String[] args) {
         basicdll dll = new basicdll();
-        int arr[] = { 2, 4, 8, 9, 0 };
+        int arr[] = { 2 };
         for (int i = 0; i < arr.length; i++) {
             dll.addLast(arr[i]);
 
@@ -165,3 +180,5 @@ public class basicdll {
     }
 
 }
+
+
