@@ -1,0 +1,144 @@
+
+public class PallendromeofList {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node reverse(Node head) {
+
+        Node prev = null;
+        Node curr = head;
+        Node future = null;
+        while (curr != null) {
+            future = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = future;
+        }
+
+        return prev;
+    }
+
+    public boolean checkPallendrome(Node head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+        int count = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            count++;
+        }
+        temp = head;
+        int mid = count / 2;
+        while (mid != 0) {
+            temp = temp.next;
+            mid--;
+        }
+        Node secondHalf = temp.next;
+        temp.next = null;
+
+        secondHalf = reverse(secondHalf);
+        Node temp1 = head;
+        Node temp2 = secondHalf;
+        while (temp1 != null && temp2 != null) {
+            if (temp1.data != temp2.data) {
+                return false;
+            }
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+
+        }
+
+        return true;
+    }
+
+    public boolean isPalindrome(Node head) {              // RECOMANED TO GO TO THIS
+        if (head == null || head.next == null)
+            return true;
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node curr = slow;
+        Node prev = null;
+        Node next = null;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev;
+        Node left = head;
+
+        while (right != null) {
+            if (right.data != left.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        PallendromeofList re = new PallendromeofList();
+        int arr[] = { 1, 3, 5, 7, 5, 3, 1 };
+        for (int i = arr.length - 1; i >= 0; i--) {
+            re.add(arr[i]);
+        }
+        System.out.print("Original list: ");
+        re.print();
+        // boolean pallendromecheck = re.checkPallendrome(head);
+        // System.out.println("Is Palindrome?(Nomal way) " + pallendromecheck);
+
+        boolean pallendromecheck2 = re.isPalindrome(head);
+        System.out.println("Is Palindrome?(Optmize way) " + pallendromecheck2);
+    }
+}
+
+
+OUTPUT---------------
+Original list: 1 -> 3 -> 5 -> 7 -> 5 -> 3 -> 1 -> null
+Is Palindrome?(Optmize way) true
+
+Original list: 1 -> 3 -> 5 -> 7 -> 5 -> 3 -> 1 -> null
+Is Palindrome?(Nomal way) true
