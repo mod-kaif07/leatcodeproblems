@@ -1,0 +1,93 @@
+public class sort_link_list0and1 {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node sortlistzeroandone(Node head) {
+        int cout0 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        Node temp = head;
+        while (temp != null) {
+            if (temp.data == 0) {
+                cout0++;
+            } else if (temp.data == 1) {
+                count1++;
+            } else {
+                count2++;
+            }
+            temp = temp.next;
+        }
+        temp = head;
+        while (temp != null) {
+            if (cout0 != 0) {
+                temp.data = 0;
+                cout0--;
+
+            } else if (count1 != 0) {
+                temp.data = 1;
+                count1--;
+
+            } else {
+                temp.data = 2;
+                count2--;
+
+            }
+            temp = temp.next;
+        }
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+        sort_link_list0and1 sk = new sort_link_list0and1();
+        int arr[] = { 1, 2, 2, 1, 2, 0, 2, 1 };
+        for (int i = arr.length - 1; i >= 0; i--) {
+            sk.add(arr[i]);
+        }
+        System.out.print("Orginal list :- ");
+        sk.print();
+        sk.head = sk.sortlistzeroandone(head);
+         System.out.print("Sorted  list based 0s,1s,2s :- ");
+        sk.print();
+
+    }
+}
+
+
+output:-------------------------
+Orginal list :- 1->2->2->1->2->0->2->1->null
+Sorted  list based 0s,1s,2s :- 0->1->1->1->2->2->2->2->null
