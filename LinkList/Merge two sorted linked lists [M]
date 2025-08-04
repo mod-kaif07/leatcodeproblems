@@ -1,0 +1,145 @@
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Merge_two_Sorted_list {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node head;
+    private Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node getHead() {
+        return head;
+    }
+
+    public void MERGE_BETTER_APPROACH(Node head1, Node head2) {
+        Node temp1 = head1;
+        Node temp2 = head2;
+        ArrayList<Integer> newlist = new ArrayList<>();
+        while (temp1 != null && temp2 != null) {
+            if (temp1.data < temp2.data) {
+                newlist.add(temp1.data);
+                temp1 = temp1.next;
+
+            } else {
+                newlist.add(temp2.data);
+                temp2 = temp2.next;
+            }
+
+        }
+        while (temp1 != null) {
+            newlist.add(temp1.data);
+            temp1 = temp1.next;
+        }
+        while (temp2 != null) {
+            newlist.add(temp2.data);
+            temp2 = temp2.next;
+        }
+        System.out.println("Merged Sorted List: " + newlist);
+
+        return;
+
+    }
+
+    public Node merge_optimze_approach(Node head1, Node head2) {
+        Node head = new Node(0);
+        Node tail = head;
+
+        while (head1 != null && head2 != null) {
+            if (head1.data <= head2.data) {
+                tail.next = head1;
+                head1 = head1.next;
+                tail = tail.next;
+                tail.next = null;
+
+            } else {
+                tail.next = head2;
+                head2 = head2.next;
+                tail = tail.next;
+                tail.next = null;
+
+            }
+
+        }
+        if (head1 != null) {
+            tail.next = head1;
+        }
+        if (head2 != null) {
+            tail.next = head2;
+        }
+
+        return head.next;
+    }
+
+    public static void main(String[] args) {
+        Merge_two_Sorted_list list1 = new Merge_two_Sorted_list();
+        Merge_two_Sorted_list list2 = new Merge_two_Sorted_list();
+        Merge_two_Sorted_list list3 = new Merge_two_Sorted_list();
+
+        int arr1[] = { 5, 10, 15, 40,50,65,100 };
+        for (int i = arr1.length - 1; i >= 0; i--) {
+            list1.add(arr1[i]);
+        }
+        System.out.print("Orginal List 1 ");
+        list1.print();
+        int arr2[] = { 2, 3, 20 };
+        for (int i = arr2.length - 1; i >= 0; i--) {
+            list2.add(arr2[i]);
+        }
+        System.out.print("Orginal List 2 ");
+        list2.print();
+
+        System.out.println(list1.head.data);
+        System.out.println(list1.tail.data);
+        System.out.println(list2.head.data);
+        System.out.println(list2.tail.data);
+
+         list3.MERGE_BETTER_APPROACH(list1.getHead(), list2.getHead()); //to run this
+        // approach make sure the head not to static
+
+        
+        list3.head=list3.merge_optimze_approach(list1.getHead(), list2.getHead());
+        list3.print();
+
+    }
+}
+
+
+
+Orginal List 1 5->10->15->40->50->65->100->null
+Orginal List 2 2->3->20->null
+Merged Sorted List: [2, 3, 5, 10, 15, 20, 40, 50, 65, 100]
+Merge with Optimize approach 
+2->3->5->10->15->20->40->50->65->100->null
