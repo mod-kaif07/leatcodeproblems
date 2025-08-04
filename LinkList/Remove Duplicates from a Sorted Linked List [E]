@@ -1,0 +1,80 @@
+//I SOLVE THIS QUESTION IN GO 
+
+
+public class Remove_Duplicate {
+    class Node {
+        int data;
+        Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private static Node head;
+    private static Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node removeDuplicate(Node head) {
+        int prev_value = head.data;
+        Node temp = head.next;
+        Node prev = head;
+        Node future = null;
+        while (temp != null) {
+            if (prev_value == temp.data) {
+                prev.next = temp.next;
+                future = temp.next;
+                temp.next = null;
+                temp = future;
+
+            } else if (prev_value != temp.data) {
+                prev_value = temp.data;
+                temp = temp.next;
+                prev = prev.next;
+            }
+        }
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Remove_Duplicate rd = new Remove_Duplicate();
+        int arr[] = { 2, 2, 2, 3, 4, 4, 4, 5, 7 };
+        for (int i = arr.length - 1; i >= 0; i--) {
+            rd.add(arr[i]);
+        }
+        rd.print();
+        rd.head = rd.removeDuplicate(head);
+        rd.print();
+
+    }
+}
+
+
+output---------------------------
+
+Orginal List 2->2->2->3->4->4->4->5->7->null
+After Duplicate remove2->3->4->5->7->null
