@@ -1,0 +1,41 @@
+/*
+class Node
+{
+    int data;
+    Node next;
+    Node(int d) {data = d; next = null; }
+}
+*/
+
+class Solution {
+    public int lengthOfLoop(Node head) {
+        
+        // code here.
+        Node slow= head;
+        Node fast=head;
+        Node curr=null;
+        while(fast!=null && fast.next !=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                 curr= slow;
+                 break;
+            }
+        }
+          if (curr == null) return 0;
+          int count=1;
+          curr=curr.next;
+       while(curr!=fast){
+           curr=curr.next;
+           count++;
+       }
+        
+      return count;
+    }
+    
+}
+
+
+phle loop detect kiye jisme slow and fast aik point par tha fir , 
+kio aik slow ya fast ko aage badhiye aur aik count variable ko increase karte rahe, 
+jaise slow and fast aik point par milega hum count varaible ko return kar denge 
