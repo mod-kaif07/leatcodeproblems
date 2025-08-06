@@ -1,0 +1,61 @@
+/* Node of a linked list
+ class Node {
+   int data;
+    Node next;
+    Node(int d)  { data = d;  next = null; }
+}
+ Linked List class
+class LinkedList
+{
+    Node head;  // head of list
+}*/
+
+class Solution {
+    public Node intersectPoint(Node head1, Node head2) {
+        // code here
+      int length1=getLength(head1);
+      int length2=getLength(head2);
+      
+      int Diffrence_in_Node=  Math.abs(length1-length2);  //Difffence of both length 
+      
+    Node temp1 = head1;
+    Node temp2 = head2;
+                                    //Both Node when at same withn respective  node 
+        if(length1 > length2){  
+            while(Diffrence_in_Node!=0){
+                temp1=temp1.next;
+                Diffrence_in_Node--;
+                
+            }
+        }else {
+            while(Diffrence_in_Node!=0){
+                temp2=temp2.next;
+                Diffrence_in_Node--;
+            }
+        }
+       
+        
+        while(temp1!=null && temp2 !=null){    
+          
+           if(temp1 == temp2){
+               return temp1;
+              
+           }
+            temp1=temp1.next;
+           temp2=temp2.next;
+        }
+        
+        return null;
+    }
+    
+    
+     private int getLength(Node head) {    //geving the length of the Node 
+        int count = 0;
+        while (head != null) {
+            count++;
+            head = head.next;
+        }
+        return count;
+    }
+}
+
