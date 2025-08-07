@@ -1,0 +1,125 @@
+public class Addition_two_list {
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+
+    }
+
+    private Node head;
+    private Node tail;
+
+    public void addvalue(int data) { // addlast i have add linklsit in sequence
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+
+    }
+
+    public void print() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node reverse(Node head) {
+        Node curr = head;
+        Node prev = null;
+        Node next = null;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+        return head;
+    }
+
+    public Node addlist(Node head1, Node head2) {
+
+         // code here
+        Node first=reverse(head1);
+        Node second=reverse(head2);
+        
+         Node dummy = new Node(0);
+            Node tail= dummy;
+        int carry=0;
+        
+        while(first!=null || second!=null || carry!=0){
+            int value1=(first !=null)? first.data: 0;
+            int value2=(second !=null)? second.data: 0;
+           
+            int sum = value1+value2+carry;
+           
+           carry=sum/10;
+           
+      
+         tail.next= new Node(sum%10);
+         tail=tail.next;
+            
+            if(first !=null){
+                first=first.next;
+            }
+             if(second !=null){
+                second=second.next;
+            }
+            
+        }
+        Node result = reverse(dummy.next);
+        if(result !=null && result.data ==0 && result.next !=null){
+            result = result.next;
+        }
+        return result;
+    }
+
+    public Node gethead() {
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Addition_two_list rs1 = new Addition_two_list();
+        Addition_two_list rs2 = new Addition_two_list();
+        Addition_two_list rs3 = new Addition_two_list();
+        int arr1[] = { 4, 8, 6, 7, 9 };
+        for (int i = 0; i < arr1.length; i++) {
+            rs1.addvalue(arr1[i]);
+        }
+        System.out.print(" linklsit 1: ");
+        rs1.print();
+
+        // rs1.head = rs1.reverse(rs1.gethead());
+        // rs1.print();
+        int arr2[] = { 8, 3, 4, 6 };
+        for (int i = 0; i < arr2.length; i++) {
+            rs2.addvalue(arr2[i]);
+        }
+        System.out.print(" linklsit 2: ");
+        rs2.print();
+
+        rs3.head = rs3.addlist(rs1.gethead(), rs2.gethead());
+        System.out.print("Both listed after added:-  ");
+        rs3.print();
+    }
+}
+
+
+ linklsit 1: 4 -> 8 -> 6 -> 7 -> 9 -> null
+ linklsit 2: 8 -> 3 -> 4 -> 6 -> null
+Both listed after added:-  5 -> 7 -> 0 -> 2 -> 5 -> null
