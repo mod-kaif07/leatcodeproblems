@@ -1,0 +1,31 @@
+public class reverseString {
+    public static String stringreverse(String str) {
+        int start = 0;
+        int end = str.length() - 1;
+        char[] chararry = str.toCharArray();
+
+        while (start < end) {
+            char temp = chararry[start];
+            chararry[start] = chararry[end];
+            chararry[end] = temp;
+            start++;
+            end--;
+
+        }
+
+        return new String(chararry);
+    }
+
+  public static void main(String[] args) {
+        String str = "GURUKUL KANGARI UNIVERSITY";
+        System.out.println("Original String : "+str);
+        String reverse = stringreverse(str);
+        System.out.println("Reverse String : "+reverse);
+    }
+}
+
+
+output -------------------------------
+
+Original String : GURUKUL KANGARI UNIVERSITY
+Reverse String : YTISREVINU IRAGNAK LUKURUG
