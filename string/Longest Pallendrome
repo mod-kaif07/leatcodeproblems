@@ -1,0 +1,44 @@
+
+public class langest_pallendrome {
+    public static int pallendrome_length(String str) {
+        int cout = 0;
+        int uppercase[] = new int[26];
+        int lowercase[] = new int[26];
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch >= 'a' && ch <= 'z') {
+                lowercase[ch - 'a']++;
+            } else if (ch >= 'A' && ch <= 'Z') {
+                uppercase[ch - 'A']++;
+            }
+        }
+        boolean odd = false;
+               for (int i = 0; i < 26; i++) {
+            if (uppercase[i] % 2 == 0) {
+                cout += uppercase[i];
+            } else {
+                cout += uppercase[i] - 1;
+                odd = true;
+            }
+            if (lowercase[i] % 2 == 0) {
+                cout += lowercase[i];
+            } else {
+                cout += lowercase[i] - 1;
+                odd = true;
+            }
+        }
+
+
+        return odd ? cout + 1 : cout;
+    }
+
+    public static void main(String[] args) {
+        String str = "abccccdd";
+        int lenght = pallendrome_length(str);
+        System.out.println("Longest Pallendrome :" + lenght);
+    }
+}
+
+
+Output-----------------------
+  Longest Pallendrome :7
