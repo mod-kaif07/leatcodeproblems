@@ -1,0 +1,38 @@
+public class DefangingIP_adress {
+
+    public static String validate(String str) {
+        StringBuilder sb = new StringBuilder();
+        String add = "[.]";
+        int index = 0;
+        while (index < str.length()) {
+            char ch = str.charAt(index);
+            if (ch == '.') {
+                sb.append(add);
+            } else {
+                sb.append(str.charAt(index));
+            }
+            index++;
+        }
+
+        return sb.toString();
+
+    }
+
+    public static void main(String[] args) {
+      String ip = "255.100.50.0";
+        String validIP = validate(ip);
+        System.out.println("Original IP : "+ip);
+        System.out.println("Defanging IP : "+validIP);;
+    }
+}
+
+output ---------------------
+
+Original IP : 255.100.50.0
+Defanging IP : 255[.]100[.]50[.]0
+
+
+Time Complexity: O(n) — because we scan the string once and build the output.
+Space Complexity: O(n) — needed for the output string (cannot be avoided in Java).
+
+
