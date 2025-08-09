@@ -1,0 +1,55 @@
+public class sorting_the_sentence {
+    public static String sorting_string(String str) {
+        String[] arrString = new String[10];
+        int index = 0;
+        String temp = ""; // carefull no spce it will create extra space
+        int n = str.length();
+        int count = 0;
+        while (index < n) {
+            char ch = str.charAt(index);
+            if (ch == ' ') {
+                int postion = temp.charAt(temp.length() - 1) - '0';
+                arrString[postion] = temp.substring(0, temp.length() - 1);
+                temp = ""; // carefull no spce it will create extra space
+                count++;
+
+            } else {
+                temp = temp + ch;
+            }
+            index++;
+        }
+
+        int postion = temp.charAt(temp.length() - 1) - '0';
+        arrString[postion] = temp.substring(0, temp.length() - 1);
+        count++;
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= count; i++) {
+            sb.append(arrString[i]);
+            if (i < count) {
+                sb.append(" "); // dont use without condition at end it will give extra sapce then not matching
+                                // withexact output
+            }
+        }
+        return sb.toString();
+
+    }
+
+    public static void main(String[] args) {
+        String str = "is2 sentence4 This1 a3";
+        String Sort_sentence = sorting_string(str);
+        System.out.println("Original String : " + str);
+        System.out.println("Shorted String : " + Sort_sentence);
+
+    }
+}
+
+output----------------------------------------
+Original String : is2 sentence4 This1 a3
+Shorted String : This is a sentence
+
+
+Final Verdict:
+total time = O(n)+O(n)+O(n)= O(n)
+Time Complexity: O(n)
+Space Complexity: O(n) (output storage is unavoidable)
