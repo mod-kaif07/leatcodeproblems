@@ -1,0 +1,43 @@
+public class RotatetheString2place {
+    public static boolean check_for_roated(String str1, String str2) {
+
+        StringBuilder sb = new StringBuilder(); // this code work for either if hole rotation shall i get str2 or not
+        String temp = "";
+        int tempcounting = 1;
+        int index = 0;
+
+        while (index < str1.length()) {
+
+            temp = str1.substring(0, tempcounting);
+
+            sb.setLength(0);
+
+            sb.append(str1.substring(tempcounting, str1.length()));
+
+            sb.append(temp);
+
+            if (sb.toString().equals(str2)) {
+                return true;
+            }
+            index++;
+
+            tempcounting++;
+
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        String str1 = "abcde";
+        String str2 = "abced";
+
+        boolean sameornot = check_for_roated(str1, str2);
+        System.out.println("Rotated elemnt found :" + sameornot);
+
+    }
+}
+
+
+Output:----------------
+Rotated elemnt found :false
