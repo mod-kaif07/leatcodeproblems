@@ -1,0 +1,23 @@
+//this code only for 2 place rotation  at rotation 2 if i get str2 then true otherwise false , 
+                    no matter 3 ,4 or any roation we get str2  return fasle
+
+class Solution { 
+    public static boolean isRotated(String s1, String s2) {
+        // code here
+        if(s1.length()==1){
+            return false;
+        }
+        if(s1.length() != s2.length()) return false;
+        String anticlock= s1.substring(2)+s1.substring(0,2);
+        if(s2.equals(anticlock)){
+            return true;
+        }
+        
+        String clock= s1.substring(s1.length()-2)+s1.substring(0,s1.length()-2);
+        if(s2.equals(clock)){
+            return true;
+        }
+        
+        return false;
+    }
+}
