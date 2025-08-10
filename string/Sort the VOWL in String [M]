@@ -1,0 +1,81 @@
+public class sort_based_on_vowels {
+
+    public static String vowel_based_sorting(String str) {
+        StringBuilder sb = new StringBuilder();
+        int[] vowel_frequency = new int[57];
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' || ch == 'a' || ch == 'e' || ch == 'i'
+                    || ch == 'o' || ch == 'u') {
+                sb.append('*');
+                 vowel_frequency[ch-'A']++;
+
+            } else {
+                sb.append(ch);
+            }
+        }
+        StringBuilder ans = new StringBuilder();
+
+        for (int i = 0; i < 57; i++) {
+            char c = (char) ('A' + i);
+            while (vowel_frequency[i] > 0) {
+                ans.append(c);
+                vowel_frequency[i]--;
+            }
+
+        }
+
+        int sec = 0;
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.charAt(i) == '*') {
+                sb.setCharAt(i, ans.charAt(sec));
+                sec++;
+            }
+        }
+
+        return sb.toString();
+
+    }
+
+    public static void main(String[] args) {
+        String str = "LYmpH";
+        String Newstring = vowel_based_sorting(str);
+        System.out.println("Original String :" + str);
+        System.out.println("Shorted Based on String : " + Newstring);
+    }
+}
+
+
+
+
+OUTPUT:---------------------------------
+Original String :LYmpH
+Shorted Based on String : LYmpH
+
+
+
+
+### Step-by-step:
+
+1. **First loop** → Iterates through all $n$ characters:
+
+   * **O(n)**
+2. **Second loop** → Iterates over `57` characters:
+   * For each index, appends the stored vowels (total at most $n$ additions).
+   * **O(57 + n)** = **O(n)** (since `57` is constant)
+3. **Third loop** → Iterates through `sb` length = $n$:
+   * **O(n)**
+✅ **Total TC** = **O(n)** + **O(n)** + **O(n)** = **O(n)**
+---
+## **Space Complexity (SC)**
+1. **`StringBuilder sb`** → Stores all $n$ characters → **O(n)**
+2. **`vowel_frequency[57]`** → Fixed size, constant space → **O(1)**
+3. **`StringBuilder ans`** → Stores vowels, at most $n$ → **O(n)**
+✅ **Total SC** = **O(n)** (dominated by `sb` and `ans`)
+---
+## **Final Answer:**
+* **Time Complexity:** **O(n)**
+* **Space Complexity:** **O(n)**
+
+
