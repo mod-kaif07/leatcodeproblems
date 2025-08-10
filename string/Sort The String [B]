@@ -1,0 +1,32 @@
+public class sort_the_String {
+    public static String sorted(String str) {
+        StringBuilder sb = new StringBuilder();
+        int[] frequency = new int[26];
+        for (int i = 0; i < str.length(); i++) {
+            frequency[str.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < frequency.length; i++) {
+            char ch = (char) ('a' + i);
+            while (frequency[i] > 0) {
+                sb.append(ch);
+                frequency[i]--;
+            }
+        }
+         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        String str = "jdjhdhfdcijdfidkjijjfjjfweoddofoeofjfjidjjcmfomoefjfiifijfiufjfiofjidfijdcik";
+        String sortedString = sorted(str);
+        System.out.println("Original String : "+ str);
+        System.out.println("The sorted String : " + sortedString);
+
+    }
+}
+
+output:---------------------------
+
+Original String : jdjhdhfdcijdfidkjijjfjjfweoddofoeofjfjidjjcmfomoefjfiifijfiufjfiofjidfijdcik
+The sorted String : cccddddddddddeeeffffffffffffffffhhiiiiiiiiiiiijjjjjjjjjjjjjjjjjkkmmooooooouw
+
