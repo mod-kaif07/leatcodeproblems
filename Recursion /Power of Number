@@ -1,0 +1,24 @@
+public class powerofnumber {
+
+    public static int findpower(int n, int pow) {
+
+        if (pow == 0) {
+            return 1;
+        }
+        if (pow == 1) {
+            return n;
+        }
+        return n * findpower(n, pow - 1);
+    }
+
+    public static void main(String[] args) {
+        int n = 2;
+        int power = 20;
+        int value = findpower(n, power);
+        System.out.println(value);
+    }
+}
+
+output :-----------------
+
+1048576
