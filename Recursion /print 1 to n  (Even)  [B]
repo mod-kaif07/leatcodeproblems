@@ -1,0 +1,52 @@
+public class print1ton {
+    public static void print(int index, int n) {
+
+        if (index == n) {
+            System.out.println(index);
+            return;
+        }
+        System.out.println(index);
+        print(index + 1, n);
+
+    }
+
+    public static void printoneargument(int n) {
+
+        if (n == 1) {
+            System.out.println(1);
+            return;
+        }
+        printoneargument(n - 1);
+        System.out.println(n);
+
+    }
+
+    public static void printevenOne_n(int n) {  // this is print the even to pass argument 
+        if (n == 2) {
+            System.out.println(2);
+            return;
+        }
+
+        printevenOne_n(n - 2);
+        System.out.println(n);
+    }
+
+    public static void main(String[] args) {
+        int n = 11;
+
+        // print(1, n);
+        // printoneargument(n);
+        if (n % 2 != 0) {
+            n--;
+        }
+        printevenOne_n(n);
+    }
+}
+
+
+output :-=----
+2
+4
+6
+8
+10
