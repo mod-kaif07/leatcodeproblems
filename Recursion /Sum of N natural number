@@ -1,0 +1,18 @@
+public class sumofnnatural_number {
+
+    public static int sumnatraul(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        return n + sumnatraul(n - 1);
+    }
+
+    public static void main(String[] args) {
+        int n = 500;
+        int sum = sumnatraul(n);
+        System.out.println(sum);
+    }
+}
+
+
+125250
