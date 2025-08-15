@@ -1,0 +1,21 @@
+public class umofnaturalnumberwithsqure {
+    public static int findingsqure(int n) {
+
+        if (n == 1) {
+            return 1;
+
+        }
+        return n * n + findingsqure(n - 1);
+
+    }
+
+    public static void main(String[] args) {
+        int n = 4;
+        int sumofsqure = findingsqure(n);
+        System.out.println(sumofsqure);
+    }
+}
+
+
+output-----------
+30
