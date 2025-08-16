@@ -1,0 +1,16 @@
+public class min_element {
+    public static int valuemin(int arr[], int index) {
+        if(index==arr.length-1){
+            return arr[index];
+        }
+        return Math.min(arr[index], valuemin(arr, index + 1));
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 2, 90, 4, 2, 6, 9, 4 };
+        int idex = 0;
+        int minvalue = valuemin(arr, idex);
+        System.out.println(minvalue);
+    }
+}
+
