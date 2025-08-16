@@ -1,0 +1,22 @@
+public class sumofelemntarray {
+
+    public static int value(int arr[], int idex) {
+      
+        if (idex == arr.length ) {
+           
+            return 0;
+
+        }
+
+        return arr[idex] + value(arr, idex + 1);
+
+    }
+
+    public static void main(String[] args) { 
+        int arr[] = { 3, 4, 5, 8, 2 };
+        int idex = 0;
+        int sumvalue = value(arr, idex);
+        System.out.println(sumvalue);
+    }
+
+}
