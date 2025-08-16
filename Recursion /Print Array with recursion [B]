@@ -1,0 +1,30 @@
+public class printArray {
+    public static void print(int arr[], int index) {
+        if (index == 0) {
+            System.out.println(arr[index] + " , ");
+            return;
+        }
+        System.out.println(arr[index] + " , ");
+        print(arr, index - 1);
+
+    }
+
+    public static void printNormalindexing(int arr[], int index) {
+
+        if (index == arr.length - 1) {
+            System.out.println(arr[index] + " , ");
+            return;
+        }
+        System.out.println(arr[index] + " , ");
+        printNormalindexing(arr, index + 1);
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 3, 7, 6, 2, 8 };
+        int index = arr.length - 1;
+        print(arr, index);
+
+        printNormalindexing(arr, 0);
+    }
+}
