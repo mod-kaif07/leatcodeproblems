@@ -1,0 +1,25 @@
+public class toUppercase {
+    public static String uppercase(char[] toCharArray, int idex) {
+        if (idex == toCharArray.length) {
+            return new String(toCharArray);
+        }
+        toCharArray[idex] = (char) ('A' + toCharArray[idex] - 'a'); // Both are correct
+        // toCharArray[index] = Character.toUpperCase(toCharArray[index]);
+        return uppercase(toCharArray, idex + 1);
+
+    }
+
+    public static void main(String[] args) {
+        String str = "rohitnegi";
+        int idex = 0;
+        String newString = uppercase(str.toCharArray(), idex);
+        System.out.println("The Lowercase String : " + str);
+        System.out.println("The Uppercase String : " + newString);
+
+    }
+}
+
+
+output:---------------
+The Lowercase String : rohitnegi
+The Uppercase String : ROHITNEGI
