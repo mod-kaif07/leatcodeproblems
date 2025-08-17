@@ -1,0 +1,24 @@
+public class count_vowels {
+    public static int counthevowels(String str, int idx) {
+        if (idx >= str.length())
+            return 0;
+        char ch = str.charAt(idx);
+        int count = 0;
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u'||ch == 'A' || ch == 'E' || ch == 'i' || ch == 'O' || ch == 'U') {
+            count = 1;
+        }
+        return count + counthevowels(str, idx + 1);
+    }
+
+    public static void main(String[] args) {
+
+        String str = "aeiouAEIOU";
+        int idx = 0;
+        int count = counthevowels(str, idx);
+        System.out.println("The total Number of Vowels : "+count);
+    }
+}
+
+
+output:---------
+The total Number of Vowels : 9
