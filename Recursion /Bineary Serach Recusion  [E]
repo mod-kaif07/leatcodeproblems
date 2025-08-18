@@ -1,0 +1,25 @@
+
+
+class Solution {
+    static boolean searchInSorted(int arr[], int k) {
+        // Your code here
+        int end= arr.length-1;
+       return serach(arr, 0 ,end,k );
+        
+    }
+     public static boolean serach(int arr[], int st, int end, int t) {
+        if (st > end) {
+            return false;
+        }
+        int min_element = st + (end - st) / 2;
+        if (arr[min_element] == t) {
+            return true ;
+        } else if (arr[min_element] < t) {
+            return serach(arr, min_element + 1, end, t);
+        } else {
+            return serach(arr, st, min_element - 1, t);
+        }
+      
+    }
+
+}
