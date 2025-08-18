@@ -1,0 +1,20 @@
+class Solution {
+    public int search(int arr[], int x) {
+        // code here done by recursion it can done normaly be for loop
+          
+       return  lenSearch(arr, x,0);
+        
+    }
+    public int lenSearch(int arr[], int x, int idex){
+        if(idex== arr.length){
+            return -1;
+        }
+        if(arr[idex]== x){
+            return idex;
+        }
+        return lenSearch( arr,  x, idex+1);
+    }
+}
+
+Input: arr[] = [1, 2, 3, 4], x = 3
+Output: 2
