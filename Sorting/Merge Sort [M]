@@ -1,0 +1,61 @@
+
+import java.util.*;
+
+public class MergeSort {
+    public static void merge(int arr[], int st, int mid, int end) {
+        int[] newarr = new int[end - st + 1];
+        int index = 0;
+        int left = st;
+        int right = mid + 1;
+        while (left <= mid && right <= end) {
+            if (arr[left] < arr[right]) {
+                newarr[index++] = arr[left++];
+
+            } else {
+                newarr[index++] = arr[right++];
+
+            }
+        }
+
+        // agar elemnt khaali bach jaaye
+               while (left <= mid) {
+            newarr[index++] = arr[left++];
+        }
+
+        // agar element baaki ho right me
+        while (right <= end) {
+            newarr[index++] = arr[right++];
+        }
+
+        index = 0;
+        while (st <= end) {
+           arr[st++] = newarr[index++];
+         
+        }
+    }
+
+    public static void sorthing(int arr[], int st, int end) {
+        if (st >= end) return;
+        int mid = st + (end - st) / 2;
+        // left------------
+        sorthing(arr, st, mid);
+        // rigth------------
+        sorthing(arr, mid + 1, end);
+        // merge-------------
+        merge(arr, st, mid, end);
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 6, 3, 5, 2, 2, 8, 1, 3, 2, 9 };
+        int st = 0;
+        int end = arr.length - 1;
+        sorthing(arr, st, end);
+        System.out.println("Merge Sorted Array "+Arrays.toString(arr));
+    }
+}
+
+
+
+
+
+Merge Sorted Array [1, 2, 2, 2, 3, 3, 5, 6, 8, 9]
