@@ -1,4 +1,63 @@
+/////////////////////////////// LeactCode solution   (912)///////////////////////
+class Solution {
 
+    public void merge(int arr[], int start, int mid, int end){
+          int[] newarr = new int[end - start + 1];
+          int index=0;
+          int left = start;
+          int right= mid+1;
+           while (left <= mid && right <= end) {
+            if (arr[left] < arr[right]) {
+                newarr[index++] = arr[left++];
+
+            } else {
+                newarr[index++] = arr[right++];
+
+            }
+        }
+
+        // agar elemnt khaali bach jaaye
+               while (left <= mid) {
+            newarr[index++] = arr[left++];
+        }
+
+        // agar element baaki ho right me
+        while (right <= end) {
+            newarr[index++] = arr[right++];
+        }
+
+        index = 0;
+        int i=start;
+        while (i <= end) {
+           arr[i++] = newarr[index++];
+         
+        }
+    }
+   public void sorting(int[] arr, int start, int end){
+         if (start >= end) return;
+      int mid = start+(end-start)/2;
+      //left
+      sorting(arr,  start, mid);
+      //right
+      sorting(arr,  mid+1, end);
+      //merge
+      merge(arr, start, mid, end);
+
+    }
+    public int[] sortArray(int[] nums) {   //by Default function 
+     int start=0;
+     int end=nums.length-1;
+       sorting(nums, start, end);
+       return nums;
+     }
+}
+
+
+
+
+
+
+//////////////////////////////////////////////////////  VS Code solution ///////////////////////////////////
 import java.util.*;
 
 public class MergeSort {
