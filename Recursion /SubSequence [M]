@@ -1,0 +1,51 @@
+class Solution {
+    private void sequence(int[] arr, int n, int index, List<List<Integer>> twodo, List<Integer> temp) {
+        if (index == n) {
+            twodo.add(new ArrayList<>(temp));
+            return;
+        }
+        sequence(arr, n, index + 1, twodo, temp);
+        temp.add(arr[index]);
+        sequence(arr, n, index + 1, twodo, temp);
+        temp.remove(temp.size() - 1);
+    }
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> twoDList = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        int index = 0;
+        int n = nums.length;
+        sequence(nums, n, index, twoDList, temp);
+        return twoDList;
+    }
+}
+
+
+
+
+
+### **⏱ Time Complexity**
+
+* Each element → **2 choices** (take it / skip it).
+* So total subsets = $2^n$.
+* For each subset, copying takes up to **O(n)**.
+
+👉 **Time = O(n · 2^n)**
+
+---
+
+### **💾 Space Complexity**
+
+* **Recursion stack:** max depth = `n` → O(n)
+* **Result list (all subsets):** total = $2^n$ subsets, each up to `n` size → O(n · 2^n)
+
+👉 **Space = O(n · 2^n)** (including output)
+
+---
+
+✅ **Final Note:**
+
+* **Time:** O(n·2^n)
+* **Space:** O(n·2^n)
+* (Only recursion uses O(n) extra, rest is output storage).
+
