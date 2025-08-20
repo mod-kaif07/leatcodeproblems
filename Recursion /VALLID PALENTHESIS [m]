@@ -1,0 +1,28 @@
+class Solution {
+     private void generate(int n, List<String> result, StringBuilder current, int left, int right) {
+        if (left == n && right == n) {
+           result.add(current.toString());
+            return;
+        }
+
+        //left parehtesis
+        if (left < n) {
+           current.append("(");
+            generate(n, result, current, left + 1, right);
+           current.deleteCharAt(current.length() - 1); 
+        }
+        //right parethseis
+         if (right < left) {
+            current.append(")");
+            generate(n, result, current, left, right + 1);
+            current.deleteCharAt(current.length() - 1); // backtrack
+        }
+
+    }
+
+    public List<String> generateParenthesis(int n) {
+       List<String> result = new ArrayList<>();
+        generate(n, result, new StringBuilder(), 0, 0);
+        return result;
+    }
+}
