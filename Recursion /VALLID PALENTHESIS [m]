@@ -26,3 +26,58 @@ class Solution {
         return result;
     }
 }
+
+
+
+//////////////////////    Vs Code Solution ////////////////////////////////////////////////////
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Valid_Palethesis {
+
+    public static void pallenthsise(List<String> ans, int n, int left, int right, StringBuilder temp) {
+
+        if (left == n && right == n) {
+            ans.add(temp.toString());
+            return;
+        }
+
+        // left baraket first
+        if (left < n) {
+            temp.append('(');
+            pallenthsise(ans, n, left + 1, right, temp);
+         temp.deleteCharAt(temp.length() - 1);
+        }
+
+        // right Bracked
+        if (right < left) {
+            temp.append(')');
+            pallenthsise(ans, n, left, right + 1, temp);
+           temp.deleteCharAt(temp.length() - 1);
+
+        }
+
+    }
+
+    public static List<String> valid(int n) {
+        int left = 0;
+        int right = 0;
+        List<String> result = new ArrayList<>();
+
+        pallenthsise(result, n, left, right, new StringBuilder());
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int n = 3;
+        List<String> ans = valid(n);
+        System.out.println("Valid Palethesis" + ans);
+        int count=0;
+        for(int i=0;i<ans.size();i++){
+            count++;
+        }
+        System.out.println(count);
+    }
+}
