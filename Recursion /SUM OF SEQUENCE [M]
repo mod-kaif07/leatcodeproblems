@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class Sum_of_sequence {
+    public static void sequence(int arr[], int index, int n, int sum, List<Integer> temp) {
+
+        if (index == n) {
+            System.out.println(temp + " -> " + sum);
+            return;
+        }
+
+        sequence(arr, index + 1, n, sum, temp);  // if i dont inculde it   here sum is same not included
+        temp.add(arr[index]);
+        sequence(arr, index + 1, n, sum + arr[index], temp);  // here we inculde it  so that value get added in sum
+        temp.remove(temp.size() - 1);
+
+    }
+
+    public static void subset(int arr[]) {
+       
+        List<Integer> temp = new ArrayList<>();
+        int index = 0;
+        int n = arr.length;
+        int sum = 0;
+        sequence(arr, index, n, sum, temp);
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 3, 4, 5 };
+        subset(arr);
+
+    }
+}
+
+
+Output:-----------------------------
+
+[] -> 0
+[5] -> 5
+[4] -> 4
+[4, 5] -> 9
+[3] -> 3
+[3, 5] -> 8
+[3, 4] -> 7
+[3, 4, 5] -> 12
