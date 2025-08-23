@@ -5,7 +5,7 @@ public class Permutation {
 
     public static void Permutation(int arr[], List<List<Integer>> ans, List<Integer> temp, boolean vistedarr[]) {
         if (temp.size() == arr.length) {
-           ans.add(new ArrayList<>(temp));
+            ans.add(new ArrayList<>(temp));
             return;
         }
 
@@ -33,14 +33,65 @@ public class Permutation {
 
     }
 
+    /////////////////////////////optimze way (REcemonaded )/////////////////////////////////////////////////////
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void permute_Optimize(int arr[], List<List<Integer>> ans, int index) {
+        if (index == arr.length) {
+            // convert array to List<Integer>
+            List<Integer> temp = new ArrayList<>();
+            for (int i = 0; i < arr.length; i++) {
+                temp.add(arr[i]);
+            }
+            ans.add(temp);
+            return;
+        }
+
+        for (int i = index; i < arr.length; i++) {
+            swap(arr, i, index); // ✅ swap by index
+            permute_Optimize(arr, ans, index + 1);
+            swap(arr, i, index); // ✅ backtrack (undo swap)
+        }
+    }
+
+    public static List<List<Integer>> optimzeway(int arr[]) {
+        List<List<Integer>> result = new ArrayList<>();
+        int index = 0;
+        permute_Optimize(arr, result, index);
+        return result;
+    }
+
     public static void main(String[] args) {
         int arr[] = { 1, 2, 3 };
-        List<List<Integer>> ans = permute(arr);
-        System.out.println(ans);
+
+        //calling optimize way:--------------
+        List<List<Integer>> wayOne = optimzeway(arr);
+        System.out.println("Optimze way: "+wayOne);
+
+        // calling Normal way :-----------------------
+        List<List<Integer>> way_two = permute(arr);
+        System.out.println("Normal way:  "+way_two);
+
+        // print no of element 
+        int value = wayOne.size();
+        System.out.println("Total No Values: " + value);
     }
 }
 
+output:-------------------
+Optimze way: [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
+Normal way:  [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+Total No Values: 6
 
-output---------------------------------
 
-[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+
+
+| Method               | Extra Space | Time Complexity | Notes                            |
+| -------------------- | ----------- | --------------- | -------------------------------- |
+| Visited + Temp List  | O(n)        | O(n \* n!)      | Needs visited\[] & temp tracking |
+| Swap-based Optimized | O(1)        | O(n \* n!)      | Cleaner, no visited\[]           |
