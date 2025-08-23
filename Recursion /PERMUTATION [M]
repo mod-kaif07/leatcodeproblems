@@ -1,0 +1,46 @@
+
+import java.util.*;
+
+public class Permutation {
+
+    public static void Permutation(int arr[], List<List<Integer>> ans, List<Integer> temp, boolean vistedarr[]) {
+        if (temp.size() == arr.length) {
+           ans.add(new ArrayList<>(temp));
+            return;
+        }
+
+        for (int i = 0; i < vistedarr.length; i++) {
+            if (vistedarr[i] == false) {
+                vistedarr[i] = true;
+                temp.add(arr[i]);
+                Permutation(arr, ans, temp, vistedarr);
+
+                temp.remove(temp.size() - 1);
+                vistedarr[i] = false;
+            }
+        }
+
+    }
+
+    public static List<List<Integer>> permute(int[] arr) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        boolean vistedarr[] = new boolean[arr.length];
+
+        Permutation(arr, result, temp, vistedarr);
+
+        return result;
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 2, 3 };
+        List<List<Integer>> ans = permute(arr);
+        System.out.println(ans);
+    }
+}
+
+
+output---------------------------------
+
+[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
