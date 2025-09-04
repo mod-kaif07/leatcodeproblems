@@ -1,0 +1,95 @@
+// Stack implementation using Array in Java
+public class StackArray {
+
+    // Step 1: Create an array to store stack elements
+    int[] stack;
+
+    // Step 2: 'top' will point to the top element of stack
+    int top;
+
+    // Step 3: 'capacity' is the maximum size of stack
+    int capacity;
+
+    // Step 4: Constructor to initialize stack
+    public StackArray(int size) {
+        stack = new int[size]; // make array of given size
+        capacity = size; // fix the capacity
+        top = -1; // stack is empty (no element yet)
+    }
+
+    // Step 5: Push operation → insert element at top
+    public void push(int value) {
+
+        if (top == capacity - 1) {
+            System.out.println("Stack Overflow! Cannot push " + value);
+            return;
+        }
+        top++;
+        stack[top] = value; // increase top, then add value
+        System.out.println(value + " pushed into stack");
+    }
+
+    // Step 6: Pop operation → remove and return top element
+    public int pop() {
+        if (top == -1) {
+            System.out.println("Stack Underflow! Nothing to pop");
+            return-1 ; // return -1 if stack is empty
+        }
+        System.out.println("Pop element is " + stack[top]);
+        top--;
+        return stack[top];
+    }
+
+    // Step 7: Peek operation → just look at top element (no remove)
+    public int peek() {
+        if (top== -1) {
+            System.out.println("Stack is Empty! Nothing to peek");
+            return -1;
+        }
+        return stack[top];
+    }
+
+    // Step 8: Check if stack is empty
+    public boolean isEmpty() {
+        return top == -1; // if no element, top stays -1
+    }
+
+    // Step 9: Check if stack is full
+    public boolean isFull() {
+        return top == capacity - 1; // last index reached
+    }
+
+    public int stacksize(){
+        return top+1;
+    }
+
+    // Step 10: Display stack elements
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is Empty");
+            return;
+        }
+        System.out.print("Stack elements: ");
+        for (int i = 0; i <= top; i++) {
+            System.out.print(stack[i] + " ");
+        }
+        System.out.println();
+    }
+
+    // Main method → test our stack
+    public static void main(String[] args) {
+        StackArray st = new StackArray(5); // stack of size 5
+
+        st.push(-1);
+        // st.push(20);
+        // st.push(30);
+        st.display(); // show current stack
+
+        if(st.stacksize()!=0){
+            System.out.println("Peek Element "+st.peek());
+        }
+        else{
+            System.out.println("Stack is Empty");
+        }
+ }
+}
