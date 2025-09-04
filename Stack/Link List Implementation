@@ -1,0 +1,86 @@
+class Node {
+    int data; // value of node
+    Node next; // link to next node
+
+    Node(int value) {
+        data = value;
+        next = null;
+    }
+}
+
+// Stack using Linked List
+public class StackLinkedList {
+    Node top; // top points to first node (stack top)
+
+    // Constructor → initially stack is empty
+    public StackLinkedList() {
+        top = null;
+    }
+
+    // Push → add element at top
+    public void push(int value) {
+        Node newNode = new Node(value); // make a new node
+        newNode.next = top; // new node points to old top
+        top = newNode; // top moves to new node
+        System.out.println(value + " pushed into stack");
+    }
+
+    // Pop → remove element from top
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack Underflow! Nothing to pop");
+            return -1;
+        }
+        int poppedValue = top.data; // get top element
+        top = top.next; // move top to next node
+        return poppedValue;
+    }
+
+    // Peek → see top element without removing
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is Empty! Nothing to peek");
+            return -1;
+        }
+        return top.data;
+    }
+
+    // Check empty
+    public boolean isEmpty() {
+        return top == null; // if no node
+    }
+
+    // Display stack
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is Empty");
+            return;
+        }
+        System.out.print("Stack elements: ");
+        Node temp = top;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    // Main method → test our stack
+    public static void main(String[] args) {
+        StackLinkedList st = new StackLinkedList();
+
+        st.push(10);
+        st.push(20);
+        st.push(30);
+        st.display();
+
+        System.out.println("Top element is: " + st.peek());
+
+        System.out.println("Popped: " + st.pop());
+        st.display();
+
+        st.push(40);
+        st.push(50);
+        st.display();
+    }
+}
