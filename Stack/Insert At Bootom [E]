@@ -1,0 +1,26 @@
+class Solution {
+    public Stack<Integer> insertAtBottom(Stack<Integer> st, int x) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        while(!st.isEmpty()){
+            arr.add(st.pop());
+        }
+        st.push(x);
+        for(int i=arr.size()-1;i>=0;i--){
+            st.push(arr.get(i));
+        }
+        
+        return st;
+    }
+}
+
+
+output :-------------
+
+Input:
+n = 5
+x = 2
+st = {4,3,2,1,8}
+Output:
+{2,4,3,2,1,8}
+Explanation:
+After insertion of 2, the final stack will be {2,4,3,2,1,8}.
