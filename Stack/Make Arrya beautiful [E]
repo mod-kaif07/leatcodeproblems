@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class beatutiful_Array {
+
+    public static ArrayList<Integer> makeBeautiful(int[] arr) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (st.isEmpty()) {
+                st.push(arr[i]);
+            } else if (arr[i] >= 0) {
+                if (st.peek() >= 0) {
+                    st.push(arr[i]);
+                } else {
+                    st.pop();
+                }
+            } else {
+                if (st.peek() < 0) {
+                    st.push(arr[i]);
+                } else {
+                    st.pop();
+                }
+            }
+        }
+
+        while (!st.isEmpty()) {
+            list.add(0, st.pop()); // add at front to maintain order
+        }
+        return list;
+    }
+
+
+
+    public static void main(String[] args) {
+        int arr[] = { 4, 2, -2, 1 };
+        System.out.println("original Array "+ Arrays.toString(arr));
+        ArrayList<Integer> listmain = makeBeautiful(arr);
+        System.out.println("Beatiful Array "+listmain);
+    }
+}
+
+
+original Array [4, 2, -2, 1]
+Beatiful Array [4, 1]
