@@ -1,0 +1,37 @@
+
+import java.util.ArrayList;
+import java.util.Stack;
+
+public class String_manupulation {
+    public static int manipulation(String[] strArr) {
+        Stack<String> st = new Stack<>();
+        ArrayList <String> List= new ArrayList<>();
+        for (int i = 0; i < strArr.length; i++) {
+            if (st.isEmpty()) {
+                st.push(strArr[i]);
+            } else if (!strArr[i].equals(st.peek())) {
+                st.push(strArr[i]);
+
+            } else {
+                st.pop();
+
+            }
+        }
+        while (!st.isEmpty()) {
+            List.add(st.pop());
+        }
+
+        System.out.println("Update list ( remove Consecutive Same) : "+List);
+        return List.size();
+    }
+
+    public static void main(String[] args) {
+        String strArr[] = { "ab", "aa", "aa", "bcd", "ab" };
+        int size = manipulation(strArr);
+        System.out.println("Size of Final array : " + size);
+    }
+}
+
+
+Update list ( remove Consecutive Same) : [ab, bcd, ab]
+Size of Final array : 3
