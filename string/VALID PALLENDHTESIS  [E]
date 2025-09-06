@@ -1,41 +1,41 @@
 import java.util.Stack;
 
-public class valid_palenthesis {
-
-    public static boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-        if (s == null || s.length() == 0) {
-            return true; // empty string is "balanced"
+public class valid_palethesis {
+    public static boolean valid(String str) {
+        if (str.length() == 0) {
+            return true;
         }
-
-        // Edge case: single character
-        if (s.length() == 1) {
-            return false; // cannot be balanced
+        if (str.length() == 1) {
+            return false;
         }
-
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
+        char[] chars = str.toCharArray();
+        Stack<Character> st = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = chars[i];
             if (ch == '(' || ch == '{' || ch == '[') {
-                stack.push(ch);
-            } else {
-                if (stack.isEmpty()) {
-                    return false;
+                st.push(chars[i]);
+            } else if (!st.isEmpty()) {
+                if (!st.isEmpty()) {
+                    char top = st.pop();
+                    if (ch == ')' && top != '(') {
+                        return false;
+                    } else if (ch == '}' && top != '{') {
+                        return false;
+                    } else if (ch == ']' && top != '[') {
+                        return false;
+                    }
                 }
-                char top = stack.pop();
-                if (ch == ')' && top != '(')
-                    return false;
-                if (ch == '}' && top != '{')
-                    return false;
-                if (ch == ']' && top != '[')
-                    return false;
+            } else if (ch == ')' || ch == '}' || ch == ']') {
+                return false;
             }
+
         }
-        return stack.isEmpty();
+        return st.isEmpty();
     }
 
     public static void main(String[] args) {
-        String str = "{[()]}";
-        boolean check = isValid(str);
-        System.out.println(check);
+        String str = "()";
+        Boolean cheked = valid(str);
+        System.out.println("Valid Parentheses :" + cheked);
     }
 }
