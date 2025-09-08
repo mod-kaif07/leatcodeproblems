@@ -1,0 +1,46 @@
+
+import java.util.*;
+
+public class Smallest_from_the_left {
+    public static int[] smallest(int arr[]) {
+        int[] newarr = new int[arr.length];
+        Stack<Integer> st = new Stack<>();
+        Arrays.fill(newarr, -1);
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!st.isEmpty() && arr[i] < arr[st.peek()]) {
+                newarr[st.peek()] = arr[i];
+                st.pop();
+            }
+            st.push(i);
+        }
+        return newarr;
+    }
+
+    public static int[] greatest(int arr[]) {
+        int[] newarr2 = new int[arr.length];
+        Stack<Integer> st = new Stack<>();
+        Arrays.fill(newarr2, -1);
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!st.isEmpty() && arr[i] > arr[st.peek()]) {      //bus yha par sign chnage kar dena hn 
+                newarr2[st.peek()] = arr[i];
+                st.pop();
+            }
+            st.push(i);
+        }
+        return newarr2;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {
+                4, 13, 11, 5, 9, 7, 8, 6
+        };
+        int update[] = smallest(arr);
+        int update2[] = greatest(arr);
+        System.out.println("Smallest From the left : " + Arrays.toString(update));
+        System.out.println("Greatest From the left : " + Arrays.toString(update2));
+    }
+}
+
+
+Smallest From the left : [-1, 4, 4, 4, 5, 5, 7, 5]
+Greatest From the left : [-1, -1, 13, 11, 11, 9, 9, 8]
