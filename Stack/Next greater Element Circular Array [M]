@@ -1,0 +1,41 @@
+import java.util.*;
+
+// next Greater Circular Array 
+public class nextGreater_2 {
+    public static ArrayList<Integer> greater(int arr[]) {
+        int[] newArr = new int[arr.length * 2];
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+
+        // copy arr second time
+        for (int i = 0; i < arr.length; i++) {
+            newArr[arr.length + i] = arr[i];
+        }
+
+        ArrayList<Integer> list = new ArrayList<>(Collections.nCopies(newArr.length, -1));
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < newArr.length; i++) {
+            while (!st.isEmpty() && newArr[i] > newArr[st.peek()]) {
+                int idex = st.pop();
+                list.set(idex, newArr[i]);
+            }
+            st.push(i);
+        }
+        ArrayList<Integer> list2 = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            list2.add(list.get(i));
+        }
+
+        return list2;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 0, 2, 3, 1, 1 };
+        ArrayList<Integer> finalList = greater(arr);
+        System.out.println(finalList);
+    }
+}
+
+
+[2, 3, -1, 2, 2]
