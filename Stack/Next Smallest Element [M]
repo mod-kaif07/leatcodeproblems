@@ -1,0 +1,55 @@
+//////////////////////////////// ARRAY LIST      /////////////////////////////////////////////////////////////
+
+import java.util.*;
+import java.io.*;
+
+public class Solution{
+    static ArrayList<Integer> nextSmallerElement(ArrayList<Integer> arr, int n){
+        ArrayList<Integer> list =  new ArrayList<>(Collections.nCopies(n, -1));
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < n; i++) {
+           while (!st.isEmpty() && arr.get(i) < arr.get(st.peek())) {
+                int index = st.pop();
+                list.set(index, arr.get(i));
+            }
+            st.push(i);
+        }
+        return list;
+    }
+}
+
+
+
+
+/////////////////////////////////////      WITH ARRAY         //////////////////////////////////////////////// 
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
+
+public class next_smalltest {
+    public static ArrayList<Integer> smallest(int arr[]) {
+        ArrayList<Integer> list =  new ArrayList<>(Collections.nCopies(arr.length, -1));
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < arr.length; i++) {
+            while (!st.isEmpty() && arr[i] < arr[st.peek()]) {
+                int index = st.pop();
+                list.set(index, arr[i]);
+            }
+            st.push(i);
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 7, 9, 12, 10, 14, 8, 3, 6, 9 };
+        ArrayList<Integer> at = smallest(arr);
+        System.out.println(at);
+    }
+}
+
+
+
+OUTPUT:----------
+[3, 8, 10, 8, 8, 3, -1, -1, -1]
+
