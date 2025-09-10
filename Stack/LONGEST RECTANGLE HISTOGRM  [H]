@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+import java.util.Stack;
+
+public class largest_rectangle_histogram {
+
+    public static int largest_histogram(int arr[]) {
+        ArrayList<Integer> right = new ArrayList<>();
+        ArrayList<Integer> left = new ArrayList<>();
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            right.add(arr.length); // Initially assume rightmost boundary
+            left.add(-1); // Initially assume leftmost boundary
+        }
+        for (int i = 0; i < arr.length; i++) {
+            while (!st.isEmpty() && arr[i] < arr[st.peek()]) {
+                right.set(st.peek(), i);
+                st.pop();
+
+            }
+            st.push(i);
+        }
+
+        while (!st.isEmpty()) {
+            right.set(st.peek(), arr.length);
+            st.pop();
+        }
+
+        st.clear();
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!st.isEmpty() && arr[i] < arr[st.peek()]) {
+                left.set(st.peek(), i);
+                st.pop();
+
+            }
+            st.push(i);
+        }
+
+        int maxarea = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            int value = (arr[i]) * (right.get(i) - left.get(i) - 1);
+            maxarea = Math.max(maxarea, value);
+
+        }
+        return maxarea;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 2, 3, 4, 2, 6, 5, 4, 5, 3 };
+        int area = largest_histogram(arr);
+        System.out.println(area);
+    }
+}
