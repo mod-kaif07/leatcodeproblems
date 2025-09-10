@@ -1,0 +1,50 @@
+import java.util.Stack;
+
+public class celeberty_problem {
+    public static int check_cleberity(int arr[][]) {
+        Stack<Integer> st = new Stack<>();
+        int n = arr.length;
+
+        for (int i = n - 1; i >= 0; i--) {
+            st.push(i); // FIX: push index, not row
+        }
+        while (st.size() > 1) {
+            int first = st.peek();
+            st.pop();
+            int second = st.peek();
+            st.pop();
+
+            if (arr[first][second] == 1 && arr[second][first] == 0) {
+                st.push(second);
+            } else if (arr[first][second] == 0 && arr[second][first] == 1) {
+                st.push(first);
+            }
+        }
+        if (st.isEmpty()) {
+            return -1;
+        }
+
+        int celeberty_vlue = st.pop();
+        int row = 0;
+        int cols = 0;
+        for (int i = 0; i < n; i++) {
+            row += arr[celeberty_vlue][i];
+            cols += arr[i][celeberty_vlue];
+        }
+
+        return row == 0 && cols == n - 1 ? celeberty_vlue : -1;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                { 0, 1, 0, 1, 1 },
+                { 0, 0, 0, 1, 1 },
+                { 0, 1, 0, 1, 0 },
+                { 0, 0, 0, 0, 0 },
+                { 1, 0, 1, 1, 0 }
+        };
+        int celeberty = check_cleberity(matrix);
+        System.out.println(celeberty);
+
+    }
+}
