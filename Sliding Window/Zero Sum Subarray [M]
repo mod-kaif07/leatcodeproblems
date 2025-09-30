@@ -1,0 +1,26 @@
+ public static int countSubarrayp(int arr[]) {
+        int count = 0;
+        int index = 0;
+        int prefixsum = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        while (index < arr.length) {
+            prefixsum += arr[index];
+            if (map.containsKey(prefixsum)) {
+                count += map.get(prefixsum);
+            }
+            map.put(prefixsum, map.getOrDefault(prefixsum, 0) + 1);
+            index++;
+        }
+
+        return count;
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 0, 0, 5, 5, 0, 0 };
+        int zeroSubarray = countSubarrayp(arr);
+        System.out.println(zeroSubarray);
+
+    }
+}
