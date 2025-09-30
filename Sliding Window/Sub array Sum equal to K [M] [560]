@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class subarraysumeqaltok {
+    public static int coutingFunction(int arr[], int k) {
+
+        int index = 0;
+        int prefixSum = 0;
+        int count = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        while (index < arr.length) {
+            prefixSum += arr[index];
+            if (map.containsKey(prefixSum - k)) {
+                count += map.get(prefixSum-k);
+            }
+            map.put(prefixSum, map.getOrDefault(prefixSum, 0) + 1);
+            index++;
+
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 2, 3 };
+        int k = 3;
+        int countSubarray = coutingFunction(arr, k);
+        System.out.println(countSubarray);
+    }
+}
