@@ -1,0 +1,52 @@
+STEP 1  ADD ALL IN QUEUE 
+STEP 2  REMOVE TILL KTH ELEMENT FORM QUEUE  PUT IN  INTO STACK
+STEP 3  POP FORM STACK , THEN AGAIN ADD INTO QUEUE , THEN QUEUE IS [4,5,3,2,1] 
+STEP 4  THEN REMOVE THE UPADTE QUEUE FROM FRONT AND ADD THEN AGAIN IN QUEUE SO THAT ELEMENT ADD IN LAST 
+        AFTER FIRST STEP [5,3,2,1,4] THEN AGAIN REMOVE [3,2,1,4,5];  
+
+
+
+
+import java.util.*;
+
+public class Reverse_Kth_Element {
+    public Queue<Integer> reverseFirstK(Queue<Integer> q, int k) {
+        if (q.isEmpty() || k <= 0) {
+            return q;
+        }
+        if (q.size() < k) {
+            return q;
+        }
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = 0; i < k; i++) {
+            st.push(q.remove());
+        }
+        while (!st.isEmpty()) {
+            q.add(st.pop());
+        }
+        int size = q.size();
+        for (int i = 0; i < size - k; i++) {
+            q.add(q.remove());
+        }
+        return q;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 7, 7, 5, 6, 5, 10 };
+        Queue<Integer> queue = new LinkedList<>();
+        int k = 8;
+
+        for (int i = 0; i < arr.length; i++) {
+            queue.add(arr[i]);
+        }
+
+        // ✅ Create object first
+        Reverse_Kth_Element obj = new Reverse_Kth_Element();
+
+        // ✅ Call method using object
+        Queue<Integer> result = obj.reverseFirstK(queue, k);
+
+        System.out.println("Queue after reversing first " + k + " elements: " + result);
+    }
+}
