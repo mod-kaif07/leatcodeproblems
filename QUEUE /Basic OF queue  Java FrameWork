@@ -1,0 +1,30 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Basic {
+
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(10);
+        queue.add(20);
+        queue.add(40);
+        queue.add(60);
+        queue.add(70);
+        queue.add(90);
+        int arr[] = new int[queue.size()];
+        System.out.println("Elements removed from queue in order:");
+        int idex = 0;
+        while (!queue.isEmpty()) {
+            System.out.println(queue.peek()); // Front element
+            arr[idex] = queue.remove(); // Remove front
+            idex++;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            queue.add(arr[i]);
+        }
+
+        System.out.println("Queue restored: " + queue);
+        System.out.println("Is queue empty? " + queue.isEmpty());
+
+    }
+}
