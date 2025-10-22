@@ -1,0 +1,37 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class diplay_all_element_k_window_size {
+    public static void displayqueue(Queue<Integer> queue) {
+        for (int num : queue) { // print without removing elements
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void dsiplay_element(int arr[], int k) {
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < k - 1; i++) {
+            queue.add(arr[i]);
+        }
+        for (int i = k - 1; i < arr.length; i++) {
+            queue.add(arr[i]);
+            displayqueue(queue);
+            queue.remove();
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 3, 6, 2, 7, 8, 11 };
+        int k = 3;
+        dsiplay_element(arr, k);
+    }
+}
+
+
+
+Output 
+3 6 2 
+6 2 7 
+2 7 8 
+7 8 11 
