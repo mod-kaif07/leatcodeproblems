@@ -1,0 +1,48 @@
+
+import java.util.*;
+
+public class first_negaive_in_window {
+    public static int first_neagtive(Queue<Integer> queue) {
+        boolean Is_neagtive = false;
+        for (int num : queue) {
+            if (num < 0) {
+                Is_neagtive = true;
+                return num;
+            }
+
+        }
+
+        return Is_neagtive == false ? 0 : 1;
+
+    }
+
+    public static List<Integer> negative_window(int arr[], int k) {
+        List<Integer> negatives = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
+
+        for (int i = 0; i < k - 1; i++) {
+            queue.add(arr[i]);
+        }
+        int start = k - 1;
+        while (start < arr.length) {
+
+            queue.add(arr[start]);
+            int value = first_neagtive(queue);
+            negatives.add(value);
+            queue.remove();
+            start++;
+        }
+        return negatives;
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { -8, 2, 3, -6, 10 };
+        int k = 2;
+
+        List<Integer> list = negative_window(arr, k);
+        System.out.println("The finail list " + list);
+
+    }
+
+}
