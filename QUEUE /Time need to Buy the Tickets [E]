@@ -1,0 +1,33 @@
+
+import java.util.*;
+
+public class Time_Needed_to_Buy_Tickets {
+    public static int timeRequiredToBuy(int ticket[], int k) {
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < ticket.length; i++) {
+            queue.add(i);
+        }
+        int time = 0;
+
+        while (ticket[k] != 0) {
+            int value = queue.peek();
+            ticket[value]--;
+            time++;
+            if (ticket[value] > 0) {
+                queue.add(value);
+
+            }
+            queue.remove();
+
+        }
+        return time;
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 5, 2, 3, 7 };
+        int k = 2;
+        int timeTaken = timeRequiredToBuy(arr, k);
+        System.out.println(timeTaken);
+    }
+}
