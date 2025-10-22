@@ -1,0 +1,73 @@
+import java.util.Stack;
+
+public class impementation_queue_stack {
+    public static boolean isEmptys(Stack<Integer> st, Stack<Integer> st2) {
+        return st.isEmpty() && st2.isEmpty();
+    }
+
+    public static void pushs(int x, Stack<Integer> st) {
+        st.push(x);
+        System.out.println(x + "  is added sucessFully");
+    }
+
+    public static int pops(Stack<Integer> st, Stack<Integer> st2) {
+        if (isEmptys(st2, st2) == true) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        // if (st2.isEmpty() == false) {
+        // st2.pop();
+        // } else {
+        // while (!st.isEmpty()) {
+        // st2.push(st.pop());
+        // }
+        // }
+
+        if (st2.isEmpty()) {
+            while (!st.isEmpty()) {
+                st2.push(st.pop());
+            }
+        }
+        int element = st2.peek();
+        st2.pop();
+        System.out.println(element + " is removed from queue");
+        return element;
+    }
+
+    public static int peeks(Stack<Integer> st, Stack<Integer> st2) {
+
+        if (isEmptys(st2, st2) == true) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        // if (!st2.isEmpty()) {
+        // peekvalue = st2.peek();
+        // } else {
+        // while (!st.isEmpty()) {
+        // st2.push(st.pop());
+        // }
+
+        // }
+
+        if (st2.isEmpty()) {
+            while (!st.isEmpty()) {
+                st2.push(st.pop());
+            }
+        }
+        return st2.peek();
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> st = new Stack<>();
+        Stack<Integer> st2 = new Stack<>();
+
+        pushs(10, st);
+        pushs(20, st);
+        pushs(30, st);
+
+        System.out.println("Peek: " + peeks(st, st2)); // Expected: 10
+        System.out.println("Pop: " + pops(st, st2)); // Expected: 10
+        System.out.println("Peek after pop: " + peeks(st, st2)); // Expected: 20
+        System.out.println("Is empty? " + isEmptys(st, st2)); // Expected: false
+    }
+}
