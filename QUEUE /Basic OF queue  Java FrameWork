@@ -1,30 +1,69 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
-public class Basic {
-
+public class QueueExample {
     public static void main(String[] args) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(10);
-        queue.add(20);
-        queue.add(40);
-        queue.add(60);
-        queue.add(70);
-        queue.add(90);
-        int arr[] = new int[queue.size()];
-        System.out.println("Elements removed from queue in order:");
-        int idex = 0;
-        while (!queue.isEmpty()) {
-            System.out.println(queue.peek()); // Front element
-            arr[idex] = queue.remove(); // Remove front
-            idex++;
-        }
-        for (int i = 0; i < arr.length; i++) {
-            queue.add(arr[i]);
-        }
+        // Create a Queue using LinkedList
+        Queue<String> queue = new LinkedList<>();
 
-        System.out.println("Queue restored: " + queue);
+        // ----- Adding Elements -----
+        queue.add("A");       // Throws exception if full
+        queue.offer("B");     // Returns false if full
+        queue.add("C");
+        queue.offer("D");
+
+        System.out.println("Queue after adding elements: " + queue);
+
+        // ----- Accessing (Head) Elements -----
+        System.out.println("Element (head): " + queue.element());  // Throws exception if empty
+        System.out.println("Peek (head): " + queue.peek());        // Returns null if empty
+
+        // ----- Removing Elements -----
+        System.out.println("Removed (remove): " + queue.remove()); // Removes head (throws exception if empty)
+        System.out.println("Removed (poll): " + queue.poll());     // Removes head (returns null if empty)
+
+        System.out.println("Queue after removals: " + queue);
+
+        // ----- More Operations -----
+        queue.offer("E");
+        queue.offer("F");
+
+        System.out.println("Queue after offering more elements: " + queue);
+        System.out.println("Peek element: " + queue.peek());
+        System.out.println("Contains 'E'? " + queue.contains("E"));
+        System.out.println("Queue size: " + queue.size());
         System.out.println("Is queue empty? " + queue.isEmpty());
 
+        // ----- Iterating through Queue -----
+        System.out.println("\nIterating through queue:");
+        for (String item : queue) {
+            System.out.println(item);
+        }
+
+        // ----- Clear the Queue -----
+        queue.clear();
+        System.out.println("\nAfter clear: " + queue);
     }
 }
+
+
+
+
+Queue after adding elements: [A, B, C, D]
+Element (head): A
+Peek (head): A
+Removed (remove): A
+Removed (poll): B
+Queue after removals: [C, D]
+Queue after offering more elements: [C, D, E, F]
+Peek element: C
+Contains 'E'? true
+Queue size: 4
+Is queue empty? false
+
+Iterating through queue:
+C
+D
+E
+F
+
+After clear: []
