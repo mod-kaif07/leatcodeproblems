@@ -1,0 +1,49 @@
+import java.util.*;
+public class basic_deque {
+
+    public static void main(String[] args) {
+        // Create a Deque using ArrayDeque
+        Deque<String> deque = new ArrayDeque<>();
+
+        // ----- Adding Elements -----
+        deque.add("A");               // Add at tail (end)
+        deque.addFirst("B");          // Add at head (front)
+        deque.addLast("C");           // Add at tail (end)
+        deque.offer("D");             // Offer at tail
+        deque.offerFirst("E");        // Offer at head
+        deque.offerLast("F");         // Offer at tail
+
+        System.out.println("Deque after additions: " + deque);
+
+        // ----- Accessing Elements -----
+        System.out.println("First element (getFirst): " + deque.getFirst());
+        System.out.println("Last element (getLast): " + deque.getLast());
+        System.out.println("Peek first: " + deque.peekFirst());
+        System.out.println("Peek last: " + deque.peekLast());
+
+        // ----- Removing Elements -----
+        System.out.println("Removed first (removeFirst): " + deque.removeFirst());
+        System.out.println("Removed last (removeLast): " + deque.removeLast());
+        System.out.println("Removed (remove): " + deque.remove()); // Removes head
+        System.out.println("Poll first: " + deque.pollFirst());
+        System.out.println("Poll last: " + deque.pollLast());
+
+        System.out.println("Deque after removals: " + deque);
+
+        // ----- Using as Stack -----
+        deque.push("X");  // Add at front
+        deque.push("Y");
+        System.out.println("After pushing (as stack): " + deque);
+        System.out.println("Pop (remove from stack): " + deque.pop());
+
+        // ----- Check Elements -----
+        deque.add("Z");
+        System.out.println("Deque contains 'Z'? " + deque.contains("Z"));
+        System.out.println("Deque size: " + deque.size());
+        System.out.println("Is deque empty? " + deque.isEmpty());
+
+        // ----- Clear All -----
+        deque.clear();
+        System.out.println("After clear: " + deque);
+    }
+}
