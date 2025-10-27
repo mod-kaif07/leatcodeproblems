@@ -1,0 +1,37 @@
+import java.util.Arrays;
+
+public class smallest_postive_number {
+    public static int missingNumber(int arr[]) {
+        int max = Arrays.stream(arr).max().getAsInt();
+        if (max <= 0) {
+            return 1;
+        }
+        int[] newarr = new int[max + 1];
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                newarr[arr[i]]++;
+            }
+
+        }
+        for (int i = 1; i < newarr.length; i++) {
+            if (newarr[i] == 0) {
+                return i;
+            }
+        }
+        return max + 1;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {1,2,3,4,5 };
+        int number = missingNumber(arr);
+        System.out.println(number);
+    }
+}
+
+
+
+logic -------------------------------------------------------------------------------------
+only see the +ve value add them in 2nd array of size maxelemnt+1 of 1st array 
+and terevse (int i=1;i<newarr.length;i++ ) the 2nd array first element that arr[i] ==0  return index 
+if no one have = 0 value means no messing element , them messing is max+1; 
+return max+1;
