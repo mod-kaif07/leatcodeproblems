@@ -1,0 +1,25 @@
+import java.util.Arrays;
+
+public class Placing_the_largest_number_at_the_end {
+    public static void placing_largest_numer_sorting(int arr[]) {
+        int n = arr.length;
+        for (int i = n - 1; i >= 0; i--) {
+            int idex = i;
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[idex] < arr[j]) {
+                    idex = j;
+                }
+            }
+            int temp = arr[i];
+            arr[i] = arr[idex];
+            arr[idex] = temp;
+
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 7, 9, 2, 1, 0, 8, 3, 5, 6 ,4};
+        placing_largest_numer_sorting(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+}
