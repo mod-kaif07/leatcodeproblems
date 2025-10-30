@@ -1,0 +1,33 @@
+//you have toc omple this in logn tc
+
+
+public class count_no_zeros {
+    public static int counthenumberofzero(int arr[]) {
+        int st = 0;
+        int end = arr.length - 1;
+        int firstindex = -1;
+        while (st <= end) {
+            int mid = st + (end - st) / 2;
+            if (arr[mid] == 0) {
+                firstindex = mid;
+                end = mid - 1;
+
+            } else {
+                st = mid + 1;
+            }
+
+        }
+        if (firstindex == -1) {
+            return 0;
+        }
+
+        return arr.length - firstindex;
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 };
+        int numberofzero = counthenumberofzero(arr);
+        System.out.println(numberofzero);
+    }
+}
