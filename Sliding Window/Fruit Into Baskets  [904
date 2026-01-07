@@ -1,0 +1,35 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Fruits_into_basket {
+    public static int totalFruit(int arr[]) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int st = 0;
+        int end = 0;
+        int totalFruits = 0;
+        int fruits = 0;
+        while (end < arr.length) {
+             map.put(arr[end], map.getOrDefault(arr[end], 0) + 1);
+            fruits++;
+            while (map.size() > 2) {
+                map.put(arr[st], map.get(arr[st]) - 1);
+                fruits--;
+                if (map.get(arr[st]) == 0) {
+                    map.remove(arr[st]);
+                }
+                st++;
+            }
+            totalFruits = Math.max(totalFruits, fruits);
+            end++;
+        }
+        return totalFruits;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {
+                3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4
+        };
+        int maxlength = totalFruit(arr);
+        System.out.println(maxlength);
+    }
+}
