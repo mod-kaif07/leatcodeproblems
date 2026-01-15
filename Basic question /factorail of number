@@ -1,0 +1,15 @@
+public class factorailofnumber {
+    public static int factorail(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        int value = n* factorail(n - 1);
+        return value;
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        int result = factorail(n);
+        System.out.println(result);
+    }
+}
