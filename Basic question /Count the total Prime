@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class counttheprime {
+    public static boolean Primenumber(int number) {
+
+        if (number <= 1)
+            return false;
+        if (number == 2)
+            return true;
+        if (number % 2 == 0)
+            return false;
+
+        for (int i = 3; i * i <= number; i += 2) {
+            if (number % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    public static int primeRange(int n) {
+        List<Integer> lt = new ArrayList<>();
+        if (n <= 2) {
+            return 0;
+        }
+
+        for (int i = 2; i < n; i++) {
+            if (Primenumber(i)) {
+                lt.add(i);
+            }
+
+        }
+        return lt.size();
+    }
+
+    public static void main(String[] args) {
+        int n = 5000000;
+        int numberofprime = primeRange(n);
+        System.out.println(numberofprime);
+
+    }
+
+}
