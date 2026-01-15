@@ -1,0 +1,30 @@
+// User function Template for Java
+
+class Solution {
+    ArrayList<Integer> primeRange(int n, int m) {
+          ArrayList<Integer> lt = new ArrayList<>();
+        int st = Math.min(n, m);
+        int end = Math.max(m, n);
+        for (int i = st; i <=end; i++) {
+            if (Primenumber(i))
+
+                lt.add(i);
+        }
+        return lt;
+        
+    }
+    
+    private Boolean Primenumber(int number) {
+        if (number == 1)
+            return false;
+        if (number == 2)
+            return true;
+        for (int i = 2;  i * i <= number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+}
