@@ -1,0 +1,21 @@
+import java.util.Arrays;
+
+public class maxmiunProductofthreenumber {
+
+    public static int findingmaxproduct(int arr[]) {
+        int n = arr.length;
+        Arrays.sort(arr);
+        int case1 = arr[n - 1] * arr[n - 2] * arr[n - 3];
+        int case2 = arr[0] * arr[1] * arr[arr.length - 1];
+        return Math.max(case1, case2);
+
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {
+               1,2,3,4
+        };
+        int maxproduct = findingmaxproduct(arr);
+        System.out.println(maxproduct);
+    }
+}
