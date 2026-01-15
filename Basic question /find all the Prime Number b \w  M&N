@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class findalltheprssiblePrimenumberingivenrnge {
+    public static Boolean Primenumber(int number) {
+        if (number == 1)
+            return false;
+        if (number == 2)
+            return true;
+        for (int i = 2;  i * i <= number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    public static List<Integer> primeRange(int n, int m) {
+        List<Integer> lt = new ArrayList<>();
+        int st = Math.min(n, m);
+        int end = Math.max(m, n);
+        for (int i = st; i <=end; i++) {
+            if (Primenumber(i))
+
+                lt.add(i);
+        }
+        return lt;
+    }
+
+    public static void main(String[] args) {
+        int n = 1;
+        int m = 10;
+        List<Integer> primenumber = primeRange(n, m);
+        System.out.println(primenumber);
+    }
+
+}
