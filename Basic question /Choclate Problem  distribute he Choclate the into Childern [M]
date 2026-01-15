@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class choclateproblem {
+    public static HashMap<Integer, Integer> countnoofchoclate(int arr[]) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (!map.containsKey(arr[i])) {
+                map.put(arr[i], 1);
+
+            } else {
+                map.put(arr[i], map.get(arr[i]) + 1);
+            }
+        }
+        return map;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 1, 2, 2, 3, 4, 1, 2, 4 };
+        HashMap<Integer, Integer> result = countnoofchoclate(arr);
+        int mostoccur = -1;
+        int child = -1;
+        for (Integer key : result.keySet()) {
+            int freq = result.get(key);
+
+            System.out.println("child" + key + ":" + freq);
+
+            if (freq > mostoccur) {
+                mostoccur = freq;
+                child = key;
+
+            }
+        }
+        System.out.println("Max Chochalte to child " + child + "got " + mostoccur);
+    }
+
+}
