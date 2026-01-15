@@ -1,0 +1,19 @@
+public class findtheGCD {
+    public static int valuegcd(int a, int b) {
+        int GCD = 0;
+        for (int i = 1; i <= Math.min(a, b); i++) {
+            if ((a % i == 0) && (b % i == 0)) {
+                int value = i;
+                GCD = Math.max(value, GCD);
+            }
+        }
+        return GCD; 
+    }
+
+    public static void main(String[] args) {
+        int a = 60;
+        int b = 36;
+        int GCD = valuegcd(a, b);
+        System.out.println(GCD);
+    }
+}
