@@ -1,0 +1,28 @@
+public class findthenumberofdaysingivenmonth {
+    public static int findthedays(String dae) {
+        String parts[] = dae.split("/");
+        int month = Integer.parseInt(parts[1]);
+        int[] daysInMonth = {
+                31, 28, 31, 30, 31, 30,
+                31, 31, 30, 31, 30, 31
+        };
+        if (isleapyear(Integer.parseInt(parts[0]))) {
+            daysInMonth[1] = 29;
+        }
+        int noofdaysaccprdingtodate = daysInMonth[month - 1];
+        return noofdaysaccprdingtodate;
+
+    }
+
+    private static boolean isleapyear(int year) {
+        return (year % 400 == 0) ||
+                (year % 4 == 0 && year % 100 != 0);
+    }
+
+    public static void main(String[] args) {
+        String date = "2016/02/19";
+        int daysinmonth = findthedays(date);
+        System.out.println(daysinmonth);
+    }
+
+}
