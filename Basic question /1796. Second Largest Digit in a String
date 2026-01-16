@@ -1,0 +1,37 @@
+import java.util.Arrays;
+
+public class secondlargestnumberinstring {
+    public static int findsecondlargest(String str) {
+        char[] ch = str.toCharArray();
+        int[] numbericarray = new int[ch.length];
+        int numbricindex = 0;
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] >= '0' && ch[i] <= '9') {
+                numbericarray[numbricindex] = ch[i] - '0';
+                numbricindex++;
+            }
+        }
+        if (numbricindex < 2)
+            return -1;
+        int[] validDigits = Arrays.copyOf(numbericarray, numbricindex);
+        Arrays.sort(validDigits);
+        int max = validDigits[validDigits.length - 1];
+        int secondMax = -1;
+
+        for (int i = validDigits.length - 2; i >= 0; i--) {
+            if (validDigits[i] != max) {
+                secondMax = validDigits[i];
+                break;
+            }
+        }
+        return secondMax;
+
+    }
+
+    public static void main(String[] args) {
+        String str = "ck077";
+        int secondlargestvalue = findsecondlargest(str);
+        System.out.println(secondlargestvalue);
+    }
+
+}
