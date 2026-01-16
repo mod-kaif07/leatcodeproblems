@@ -1,0 +1,18 @@
+class Solution {
+    public int thirdMax(int[] arr) {
+
+        Arrays.sort(arr);
+        int count = 0;
+        int max = Arrays.stream(arr).max().getAsInt();
+
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i] < arr[i + 1]) {
+                count++;
+            }
+            if (count == 2) {
+                return arr[i];
+            }
+        }
+        return max;
+    }
+}
