@@ -1,0 +1,77 @@
+/* Node class */
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int value) {
+        data = value;
+        left = null;
+        right = null;
+    }
+}
+
+public class Diameteroftree {
+     public static boolean isIdentical(Node node, Node subnode) {
+        if (node == null && subnode == null) {
+            return true;
+        }
+        if (node == null || subnode == null || node.data != subnode.data) {
+            return false;
+        }
+
+        if (!isIdentical(node.left, subnode.left)) {
+            return false;
+        }
+        if (!isIdentical(node.right, subnode.right)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isSubtree(Node node, Node subnode) {
+
+        if (subnode == null) {
+            return true;
+        }
+        if (node == null) {
+            return false;
+        }
+
+        if (node.data == subnode.data) {
+            if (isIdentical(node, subnode)) {
+                return true;
+            }
+        }
+        return isSubtree(node.left, subnode)
+                || isSubtree(node.right, subnode);
+
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+        /*
+         * 1
+         * / \
+         * 2 3
+         * / \ / \
+         * 4 5 6 7
+         */
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+
+        // subroot
+        Node subroot = new Node(2);
+        subroot.left = new Node(4);
+        subroot.right = new Node(5);
+
+        // info res = diameter(root);
+        // System.out.println(res.dia);
+        // System.out.println(res.height);
+
+        System.out.println(isSubtree(root, subroot));
+    }
+}
