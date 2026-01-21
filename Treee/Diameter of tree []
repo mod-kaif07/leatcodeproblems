@@ -1,0 +1,56 @@
+/* Node class */
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int value) {
+        data = value;
+        left = null;
+        right = null;
+    }
+}
+
+public class Diameteroftree {
+
+    static class info {
+        int dia;
+        int height;
+
+        public info(int dia, int height) {
+            this.dia = dia;
+            this.height = height;
+        }
+    }
+
+    public static info diameter(Node root) {
+        if (root == null) {
+            return new info(0, 0);
+        }
+        info leftinfo = diameter(root.left);
+        info rightinfo = diameter(root.right);
+
+        int dia = Math.max(Math.max(leftinfo.dia, rightinfo.dia), leftinfo.height + rightinfo.height + 1);
+        int height = Math.max(leftinfo.height, rightinfo.height) + 1;
+
+        return new info(dia, height);
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+        /*   1
+           /   \
+           2     3
+          / \   / \
+         4   5 6   7
+        */
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+
+       info res= diameter(root);
+       System.out.println(res.dia);
+       System.out.println(res.height);
+    }
+}
